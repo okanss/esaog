@@ -261,6 +261,7 @@ def main():
     s = s.replace('\\geometry{margin=25mm}\n', '\\geometry{margin=25mm}\n\\setlength{\\emergencystretch}{1.5em}\n', 1)
     s = s.replace('end-to-end latency, ontology/reasoner latency, SPARQL/SHACL latency', 'end-to-end latency, ontology and reasoner latency, SPARQL and SHACL latency', 1)
     s = s.replace('required\\_capabilities &', 'required\\_\\allowbreak capabilities &', 1)
+    s = s.replace('\\u{I}zmir', '\\.{I}zmir')  # Turkish dotted capital I (not a breve)
     s = s.replace('SemanticSHACLGate', 'Semantic\\-SHACL\\-Gate')
     s = s.replace('Provenance/permission/path-trust signals', 'Provenance, permission and path-trust signals')
     for a, b in ORIG6_FIXES:
