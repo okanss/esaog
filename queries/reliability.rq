@@ -1,0 +1,7 @@
+# Provenance-derived reliability: successes / failures of each actor in G_E
+# (imported history + executions of the current run).
+PREFIX esaog: <https://w3id.org/esaog/core#>
+PREFIX prov:  <http://www.w3.org/ns/prov#>
+SELECT ?a (SUM(IF(?st = esaog:Succeeded, 1, 0)) AS ?succ) (COUNT(?e) AS ?n) WHERE {
+  ?e a esaog:Execution ; prov:wasAssociatedWith ?a ; esaog:hasState ?st .
+} GROUP BY ?a

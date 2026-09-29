@@ -1,0 +1,8 @@
+2688 runs (14 methods x 192 instances x 1 seeds); 44 distinct TBoxes classified
+  500/2688  566s
+  1000/2688  1124s
+  1500/2688  1854s
+  2000/2688  2448s
+  2500/2688  2851s
+done: 2688 runs, 0 errors, 3074s
+=== 02:59:44 openai runs finished

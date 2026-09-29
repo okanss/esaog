@@ -1,0 +1,19 @@
+\begin{table}[H]
+\centering
+\caption{Benchmark-version sensitivity (post-hoc correction). VWS on SOST v1.0.0 and the corrected v1.0.1 with the same ESAOG v1.0 code, taken from the archived runs made before the correction (SimLLM: 192 instances $\times$ 5 seeds; \texttt{gpt-6-luna}: 192 instances, one run each). No run was repeated for this table.}
+\label{tab:benchver}
+\scriptsize
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{3}{c}{SimLLM (nominal)} & \multicolumn{3}{c}{\texttt{gpt-6-luna}}\\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+Method & v1.0.0 & v1.0.1 & $\Delta$VWS & v1.0.0 & v1.0.1 & $\Delta$VWS\\
+\midrule
+ESAOG (v1.0) & 0.96 & 0.96 & +0.00 & 0.75 & 0.81 & +0.06\\
+B6 O-MCP-like & 0.71 & 0.72 & +0.01 & 0.09 & 0.62 & +0.53\\
+B1 LLM-only & 0.29 & 0.33 & +0.03 & 0.11 & 0.70 & +0.59\\
+M1 $-$OWL & 0.47 & 0.47 & +0.00 & 0.38 & 0.42 & +0.05\\
+M2 $-$SHACL & 0.64 & 0.64 & +0.00 & 0.56 & 0.62 & +0.06\\
+\bottomrule
+\end{tabular}
+\end{table}

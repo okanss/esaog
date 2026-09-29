@@ -1,0 +1,34 @@
+\begin{table}[H]
+\centering
+\caption{Reproducibility manifest. Hashes are computed from the released files at table-generation time; per-run manifests are in \texttt{results/raw/manifest\_*.json}.}
+\label{tab:manifest}
+\scriptsize
+\begin{tabularx}{\textwidth}{p{3.6cm}X}
+\toprule
+Item & Value\\
+\midrule
+Benchmark & SOST v1.0.1 (task-description correction of v1.0.0; the file's metadata field was not updated and still reads ``1.0.0''), 192 instances\\
+Benchmark SHA-256 & d5bfce38db58e6ce06f8a49b9ee550d4ca82b45b0d588f14c2e897ad3a87cc24\\
+Superseded benchmark v1.0.0 SHA-256 & 812c038b97d9499afddc503903bd376e7073a019527afc22d1c2ddf4ad52676e\\
+Ontology + SHACL shapes SHA-256 & af7fbefbd41e91f57fb18704b286c0389d65b53f58a4a65d994d332da7b52549 (ontology version 1.0.0; 7 TTL files)\\
+Final raw results SHA-256 & e09c57aba79766792ac88961dfc31b8e67d6e669e25dfbe18c40e761106c845d (17 files in results/raw)\\
+Analysis scripts SHA-256 & 661abe5bcfcecbfde2508f0a88a207bf9cc742f7f58c88156b179cc627ee7507\\
+Code tree hash, main run (SHA-256/16) & d46f4674c2331da7 (computed at run completion; per-run hashes in results/raw/manifest\_*.json)\\
+Code commit / release & [AUTHOR ACTION REQUIRED: tag a release and insert commit hash]\\
+Repository / archive DOI & [AUTHOR ACTION REQUIRED: insert persistent repository URL and archive DOI]\\
+Master seed / run seeds & 20260926 / 0,1,2,3,4 (SimLLM); one run per instance for real LLMs\\
+Main runs & 16320 (17 configurations), 0 errors\\
+SimLLM & profile nominal (weak/strong for sensitivity); prompts prompts/*.txt; pricing assumption USD 3/M input, 15/M output tokens\\
+Real LLM 1 & OpenAI gpt-6-luna, Chat Completions, JSON mode, seed 0, reasoning\_effort=low, default sampling (temperature not accepted); run 2026-09-27; USD 0.10/0.50 per M tokens\\
+Real LLM 2 & Anthropic claude-haiku-4-5, Messages API, temperature 0, max 4{,}000 output tokens, no extended thinking; run 2026-09-27; USD 1/5 per M tokens\\
+Local LLMs (Ollama) & Llama-3.2-3B-Instruct, Qwen3-4B-Instruct-2507, Llama-3.1-8B-Instruct (Q4\_K\_M GGUF, Hugging Face), qwen2.5:14b (Q4\_K\_M); temperature 0, seed 0, JSON format; context 8{,}192 (4{,}096 for 8B/14B); runs 2026-09-27 to 2026-09-29\\
+Reasoner & HermiT via owlready2 0.51 (java version "26.0.1" 2026-04-21)\\
+RDF / SPARQL / SHACL & rdflib 7.6.0, pySHACL 0.40.1\\
+Agent runtime adapter & LangGraph 1.2.12 StateGraph + MCP-style JSON-RPC tool server (not a conformance-tested MCP implementation)\\
+Statistics & numpy 2.5.3, scipy 1.18.1, pandas 3.0.6\\
+Python / platform & 3.12.2 / macOS-27.0-arm64-arm-64bit\\
+Cache policy & HermiT TBox classification cached by TBox content hash (cold time reported separately); no caching of SimLLM calls; no caching of SPARQL results, SHACL reports or tool results; real-LLM completions cached by exact prompt (identical prompts issued by different methods receive the identical completion)\\
+One-command runner & \texttt{bash run\_all.sh}\\
+\bottomrule
+\end{tabularx}
+\end{table}

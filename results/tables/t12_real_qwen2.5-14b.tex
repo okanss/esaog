@@ -1,0 +1,30 @@
+\begin{table}[H]
+\centering
+\caption{Real-LLM rerun with Qwen2.5-14B-Instruct (Ollama) (192 SOST instances, temperature 0, one run per instance). H--R: VWS on SOST-H/I/P/F/R; SRR on F/R/C. Tokens = mean LLM tokens per run (real calls plus modelled overhead). Last column: SimLLM (nominal, seed 0) VWS on the same instances. $^\dagger$No LLM involved (identical to the SimLLM run). ESAOG vs strongest baseline (B6): VWS difference +0.391 [+0.318, +0.458], b/c = 76/1, Holm-adjusted exact McNemar $p$ $<$0.001.}
+\label{tab:real_qwen25-14b}
+\scriptsize
+\begin{tabular}{lccccccc}
+\toprule
+Method & VWS & H--R & SRR & SAA & CVR$\downarrow$ & Tokens & SimLLM VWS\\
+\midrule
+B0 Static$^\dagger$ & 0.35 & 0.16 & 0.21 & 0.69 & 0.10 & 0 & 0.35\\
+B1 LLM-only & 0.36 & 0.33 & 0.36 & 0.79 & 0.19 & 13688 & 0.33\\
+B2 TF-IDF lexical & 0.07 & 0.04 & 0.07 & 0.60 & 0.38 & 695 & 0.09\\
+B3 Graph router & 0.23 & 0.21 & 0.26 & 0.68 & 0.29 & 695 & 0.27\\
+B4 Tressoir-like & 0.25 & 0.22 & 0.24 & 0.72 & 0.25 & 28486 & 0.33\\
+B5 COMPAAS-like$^\dagger$ & 0.01 & 0.02 & 0.03 & 0.58 & 0.16 & 0 & 0.01\\
+B6 O-MCP-like & 0.51 & 0.52 & 0.47 & 0.81 & 0.01 & 15503 & 0.75\\
+B7 CogniGraph-like & 0.01 & 0.02 & 0.03 & 0.68 & 0.29 & 6056 & 0.40\\
+B8 COVENANT-like & 0.44 & 0.41 & 0.38 & 0.86 & 0.12 & 27995 & 0.35\\
+ESAOG v1.0 (LLM dataflow edges) & 0.74 & 0.74 & 0.72 & 0.75 & 0.00 & 15121 & --\\
+\textbf{ESAOG} (v1.1) & 0.90 & 0.90 & 0.89 & 0.91 & 0.00 & 15012 & 0.97\\
+M1 $-$OWL & 0.46 & 0.38 & 0.36 & 0.52 & 0.00 & 15012 & 0.45\\
+M2 $-$SHACL & 0.69 & 0.64 & 0.78 & 0.83 & 0.09 & 15012 & 0.67\\
+M3 $-$Provenance ranking & 0.86 & 0.83 & 0.78 & 0.91 & 0.00 & 15012 & 0.93\\
+M4 $-$Runtime KG & 0.72 & 0.76 & 0.42 & 0.87 & 0.00 & 15012 & 0.77\\
+M5 Flat capabilities & 0.39 & 0.26 & 0.29 & 0.83 & 0.13 & 15012 & 0.32\\
+M6 $-$LLM planner$^\dagger$ & 0.75 & 0.75 & 0.75 & 0.75 & 0.00 & 0 & 0.75\\
+M7 $-$Recomposition & 0.68 & 0.72 & 0.31 & 0.87 & 0.00 & 15012 & 0.72\\
+\bottomrule
+\end{tabular}
+\end{table}

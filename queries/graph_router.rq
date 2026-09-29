@@ -1,0 +1,10 @@
+# B3 (graph router without OWL/SHACL): actors linked to the capability node or to a
+# node one rdfs:subClassOf hop away in EITHER direction (topological neighbourhood).
+PREFIX esaog: <https://w3id.org/esaog/core#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+SELECT DISTINCT ?a ?hop WHERE {
+  { ?a esaog:hasCapability ?req . BIND(0 AS ?hop) }
+  UNION { ?a esaog:hasCapability ?c . ?c rdfs:subClassOf ?req . BIND(1 AS ?hop) }
+  UNION { ?a esaog:hasCapability ?c . ?req rdfs:subClassOf ?c . FILTER(?c != esaog:Capability) BIND(1 AS ?hop) }
+  ?a esaog:available true .
+}

@@ -1,0 +1,91 @@
+{
+ "ontology": {
+  "core": {
+   "classes": 42,
+   "object_properties": 31,
+   "datatype_properties": 12,
+   "triples": 185
+  },
+  "literature": {
+   "capabilities": 28,
+   "data_types": 17,
+   "subclass_axioms": 45,
+   "equivalence_axioms": 3,
+   "max_capability_depth": 3,
+   "slots": 6,
+   "triples": 175
+  },
+  "software": {
+   "capabilities": 26,
+   "data_types": 14,
+   "subclass_axioms": 40,
+   "equivalence_axioms": 2,
+   "max_capability_depth": 3,
+   "slots": 6,
+   "triples": 153
+  },
+  "enterprise": {
+   "capabilities": 21,
+   "data_types": 11,
+   "subclass_axioms": 32,
+   "equivalence_axioms": 2,
+   "max_capability_depth": 3,
+   "slots": 6,
+   "triples": 123
+  },
+  "shapes": {
+   "workflow_node_shapes": 7,
+   "workflow_sparql_constraints": 6,
+   "workflow_property_constraints": 2,
+   "registry_node_shapes": 1,
+   "registry_property_constraints": 8,
+   "sparql_queries": 6
+  }
+ },
+ "detection": {
+  "BudgetViolation": {
+   "expected": 13,
+   "detected": 13,
+   "rate": 1.0
+  },
+  "CapabilityNotEntailed": {
+   "expected": 1006,
+   "detected": 1006,
+   "rate": 1.0
+  },
+  "ClearanceViolation": {
+   "expected": 38,
+   "detected": 38,
+   "rate": 1.0
+  },
+  "IOIncompatible": {
+   "expected": 63,
+   "detected": 63,
+   "rate": 1.0
+  },
+  "ObligationViolation": {
+   "expected": 6,
+   "detected": 6,
+   "rate": 1.0
+  },
+  "ProhibitionViolation": {
+   "expected": 200,
+   "detected": 200,
+   "rate": 1.0
+  }
+ },
+ "detected_by": {
+  "CapabilityNotEntailed->A1": 1006,
+  "IOIncompatible->A1": 15,
+  "IOIncompatible->SHACL": 48,
+  "BudgetViolation->A1": 13,
+  "ProhibitionViolation->A1": 200,
+  "ClearanceViolation->A1": 38,
+  "ObligationViolation->A1": 6
+ },
+ "valid_alternatives_tested": 2734,
+ "false_exclusions": {
+  "defect": 12
+ },
+ "instances_with_defects": 25
+}

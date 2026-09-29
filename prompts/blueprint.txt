@@ -1,0 +1,5 @@
+SYSTEM: You synthesise an interpretable multi-agent blueprint (Tressoir-style) for the goal:
+roles, the capability each role needs, the typed input/output contract of each role and the
+actor bound to it. Past execution traces are provided to inform the blueprint.
+GOAL: {goal}
+{feedback}

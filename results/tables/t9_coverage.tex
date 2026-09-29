@@ -1,0 +1,40 @@
+\begin{table}[H]
+\centering
+\caption{Ontology and SHACL coverage. Top: domain extensions of the shared upper ontology (core: 42 classes, 31 object and 12 datatype properties). Middle: workflow/registry shapes and SPARQL queries. Bottom: evaluator unit tests---every expected check declared in the benchmark instances, and whether ESAOG's gates (A1 SPARQL eligibility or SHACL) flag it when the offending actor is placed in an otherwise valid workflow.}
+\label{tab:coverage}
+\scriptsize
+\begin{tabular}{lrrrrrrr}
+\toprule
+Domain & Capabilities & Data types & subClassOf & equivalentClass & Max depth & Task slots & Triples\\
+\midrule
+Literature & 28 & 17 & 45 & 3 & 3 & 6 & 175\\
+Software & 26 & 14 & 40 & 2 & 3 & 6 & 153\\
+Enterprise & 21 & 11 & 32 & 2 & 3 & 6 & 123\\
+\bottomrule
+\end{tabular}
+
+\vspace{4pt}
+\begin{tabular}{lr}
+\toprule
+Workflow node shapes / SPARQL constraints / property constraints & 7 / 6 / 2\\
+Registry (A4) node shapes / property constraints & 1 / 8\\
+SPARQL query files & 6\\
+\bottomrule
+\end{tabular}
+
+\vspace{4pt}
+\begin{tabular}{lrrr}
+\toprule
+Expected check & Expected & Detected & Rate\\
+\midrule
+BudgetViolation & 13 & 13 & 1.000\\
+CapabilityNotEntailed & 1006 & 1006 & 1.000\\
+ClearanceViolation & 38 & 38 & 1.000\\
+IOIncompatible & 63 & 63 & 1.000\\
+ObligationViolation & 6 & 6 & 1.000\\
+ProhibitionViolation & 200 & 200 & 1.000\\
+\midrule
+\multicolumn{4}{l}{Valid alternatives tested: 2734; falsely excluded: 12 in missing-axiom instances, 0 otherwise}\\
+\bottomrule
+\end{tabular}
+\end{table}

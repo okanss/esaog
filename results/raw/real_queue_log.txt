@@ -1,0 +1,59 @@
+=== 00:34:49 real_qwen3-4b_sub hf.co/unsloth/Qwen3-4B-Instruct-2507-GGUF:Q4_K_M
+672 runs (14 methods x 48 instances x 1 seeds); 22 distinct TBoxes classified
+=== 02:07:51 PAUSED: benchmark task-text fix (specific requirements named)
+=== 02:08:30 real_qwen3-4b_sub hf.co/unsloth/Qwen3-4B-Instruct-2507-GGUF:Q4_K_M
+672 runs (14 methods x 48 instances x 1 seeds); 22 distinct TBoxes classified
+  500/672  4892s
+done: 672 runs, 0 errors, 6056s
+=== 03:49:26 real_llama3.2-3b_sub hf.co/bartowski/Llama-3.2-3B-Instruct-GGUF:Q4_K_M
+672 runs (14 methods x 48 instances x 1 seeds); 22 distinct TBoxes classified
+  500/672  8008s
+done: 672 runs, 0 errors, 8693s
+=== 06:14:35 real_llama3.2-3b_sub finished
+=== 06:14:35 real_llama3.2-3b_rest hf.co/bartowski/Llama-3.2-3B-Instruct-GGUF:Q4_K_M
+2160 runs (15 methods x 144 instances x 1 seeds); 34 distinct TBoxes classified
+  500/2160  5207s
+  1000/2160  9668s
+  1500/2160  13293s
+  2000/2160  15402s
+done: 2160 runs, 0 errors, 16016s
+=== 10:41:43 real_llama3.2-3b_rest finished
+=== 10:41:43 real_qwen3-4b_sub_v11 hf.co/unsloth/Qwen3-4B-Instruct-2507-GGUF:Q4_K_M
+384 runs (8 methods x 48 instances x 1 seeds); 22 distinct TBoxes classified
+done: 384 runs, 0 errors, 127s
+=== 10:43:51 real_qwen3-4b_rest hf.co/unsloth/Qwen3-4B-Instruct-2507-GGUF:Q4_K_M
+2160 runs (15 methods x 144 instances x 1 seeds); 34 distinct TBoxes classified
+=== 11:32:54 PAUSED real_qwen3-4b_rest (resumes from cache) for Llama-3.1-8B
+=== 11:32:55 real_llama3.1-8b_sub hf.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF:Q4_K_M
+=== 15:00:34 WATCHDOG: 590 MB free -> stopping Ollama queue (resumable from cache)
+720 runs (15 methods x 48 instances x 1 seeds); 22 distinct TBoxes classified
+  500/720  10895s
+=== 15:05:24 RESUME after watchdog stop (num_ctx 4096)
+=== 15:05:24 real_llama3.1-8b_sub hf.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF:Q4_K_M
+720 runs (15 methods x 48 instances x 1 seeds); 22 distinct TBoxes classified
+  500/720  86s
+done: 720 runs, 0 errors, 937s
+=== 15:21:02 real_qwen3-4b_rest hf.co/unsloth/Qwen3-4B-Instruct-2507-GGUF:Q4_K_M
+2160 runs (15 methods x 144 instances x 1 seeds); 34 distinct TBoxes classified
+  500/2160  1479s
+  1000/2160  5786s
+  1500/2160  9275s
+  2000/2160  13602s
+done: 2160 runs, 0 errors, 14822s
+=== 19:28:05 real_llama3.1-8b_rest hf.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF:Q4_K_M
+=== 19:38:42 real_qwen3-4b_rest finished
+=== 19:38:42 real_llama3.1-8b_rest hf.co/bartowski/Meta-Llama-3.1-8B-Instruct-GGUF:Q4_K_M
+2160 runs (15 methods x 144 instances x 1 seeds); 34 distinct TBoxes classified
+=== 19:39:06 removed duplicate llama3.1-8b_rest (started 19:38); original run (19:28) continues
+2160 runs (15 methods x 144 instances x 1 seeds); 34 distinct TBoxes classified
+  500/2160  9545s
+  1000/2160  17724s
+  1500/2160  24296s
+  2000/2160  30744s
+done: 2160 runs, 0 errors, 32830s
+=== 04:35:29 real_llama3.1-8b_rest finished
+=== 04:35:29 real_qwen2.5-14b_sub qwen2.5:14b
+720 runs (15 methods x 48 instances x 1 seeds); 22 distinct TBoxes classified
+  500/720  15299s
+done: 720 runs, 0 errors, 19141s
+=== 09:54:30 queue finished

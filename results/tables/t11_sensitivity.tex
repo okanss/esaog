@@ -1,0 +1,20 @@
+\begin{table}[H]
+\centering
+\caption{Sensitivity of the conclusions to the simulated LLM's competence (SimLLM profiles; 192 instances $\times$ seeds 0--1 = 384 runs per cell). H--R = VWS on SOST-H/I/P/F/R; SRR on F/R/C. M6 does not call an LLM and serves as a control.}
+\label{tab:sensitivity}
+\scriptsize
+\begin{tabular}{lccccccccc}
+\toprule
+& \multicolumn{3}{c}{Weak} & \multicolumn{3}{c}{Nominal} & \multicolumn{3}{c}{Strong}\\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}
+Method & VWS & H--R & SRR & VWS & H--R & SRR & VWS & H--R & SRR\\
+\midrule
+B1 LLM-only & 0.14 & 0.11 & 0.14 & 0.32 & 0.28 & 0.36 & 0.66 & 0.65 & 0.74\\
+B4 Tressoir-like & 0.17 & 0.15 & 0.18 & 0.32 & 0.28 & 0.33 & 0.53 & 0.50 & 0.58\\
+B6 O-MCP-like & 0.39 & 0.33 & 0.38 & 0.72 & 0.71 & 0.72 & 0.90 & 0.89 & 0.92\\
+B8 COVENANT-like & 0.15 & 0.11 & 0.13 & 0.32 & 0.30 & 0.31 & 0.54 & 0.51 & 0.47\\
+ESAOG & 0.93 & 0.94 & 0.92 & 0.96 & 0.96 & 0.95 & 0.99 & 0.98 & 0.99\\
+M6 $-$LLM planner & 0.75 & 0.75 & 0.75 & 0.75 & 0.75 & 0.75 & 0.75 & 0.75 & 0.75\\
+\bottomrule
+\end{tabular}
+\end{table}

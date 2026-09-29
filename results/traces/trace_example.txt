@@ -1,0 +1,7 @@
+{'slot': 'search', 'e': '1', 'actor': 'search_alt_002', 'state': 'Succeeded', 'failure': '', 'old': '', 'wv': 'v2', 'why': 'A1-ranked eligible candidate (SPARQL+OWL), SHACL-conformant workflow'}
+{'slot': 'screen', 'e': '2', 'actor': 'screen_agent_004', 'state': 'Failed', 'failure': 'AgentUnavailable', 'old': '', 'wv': 'v2', 'why': 'A1-ranked eligible candidate (SPARQL+OWL), SHACL-conformant workflow'}
+{'slot': 'screen', 'e': '3', 'actor': 'screen_cloud_006', 'state': 'Failed', 'failure': 'TransientError', 'old': '2', 'wv': 'v3', 'why': 'recomposition after AgentUnavailable of screen_agent_004; provenance-ranked'}
+{'slot': 'screen', 'e': '4', 'actor': 'screen_cloud_006', 'state': 'Succeeded', 'failure': '', 'old': '3', 'wv': 'v4', 'why': 'recomposition after TransientError of screen_cloud_006; provenance-ranked'}
+{'slot': 'extract', 'e': '5', 'actor': 'extract_spec_020', 'state': 'Succeeded', 'failure': '', 'old': '', 'wv': 'v4', 'why': 'A1-ranked eligible candidate (SPARQL+OWL), SHACL-conformant workflow'}
+{'slot': 'appraise', 'e': '6', 'actor': 'appraise_agent_010', 'state': 'Succeeded', 'failure': '', 'old': '', 'wv': 'v4', 'why': 'A1-ranked eligible candidate (SPARQL+OWL), SHACL-conformant workflow'}
+{'slot': 'synth', 'e': '7', 'actor': 'synth_agent_013', 'state': 'Succeeded', 'failure': '', 'old': '', 'wv': 'v4', 'why': 'A1-ranked eligible candidate (SPARQL+OWL), SHACL-conformant workflow'}

@@ -1,0 +1,127 @@
+@prefix esaog: <https://w3id.org/esaog/core#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# ESAOG upper ontology, version 1.0.0.
+# Modules: O_G (goal/task), O_C (capability), O_W (workflow), O_R (runtime),
+# O_P (policy), O_Prov (provenance; reuses PROV-O directly).
+# Alignment to AgentO and PROV-AGENT is kept in separate files (see
+# esaog-alignment.ttl) so that the core stays usable when those vocabularies
+# are not resolvable.
+
+<https://w3id.org/esaog/core> a owl:Ontology ;
+    owl:versionInfo "1.0.0" ;
+    dcterms:title "ESAOG core ontology" ;
+    rdfs:comment "Upper ontology for Executable Semantic Agent Orchestration Graphs." .
+
+# ---------------------------------------------------------------- O_G
+esaog:Goal a owl:Class ; rdfs:label "Goal" .
+esaog:Task a owl:Class ; rdfs:label "Task" .
+esaog:SubTask a owl:Class ; rdfs:subClassOf esaog:Task .
+esaog:Precondition a owl:Class .
+esaog:Postcondition a owl:Class .
+esaog:decomposesInto a owl:ObjectProperty ; rdfs:domain esaog:Goal ; rdfs:range esaog:Task .
+esaog:achievesGoal a owl:ObjectProperty ; owl:inverseOf esaog:decomposesInto .
+esaog:dependsOn a owl:ObjectProperty, owl:TransitiveProperty ; rdfs:domain esaog:Task ; rdfs:range esaog:Task .
+esaog:requestsOutput a owl:ObjectProperty ; rdfs:domain esaog:Goal ; rdfs:range esaog:DataType .
+esaog:providesInput a owl:ObjectProperty ; rdfs:domain esaog:Goal ; rdfs:range esaog:DataType .
+
+# ---------------------------------------------------------------- O_C
+esaog:Actor a owl:Class ; rdfs:subClassOf prov:Agent ; rdfs:label "Actor" .
+esaog:Agent a owl:Class ; rdfs:subClassOf esaog:Actor ; rdfs:label "Agent" .
+esaog:Tool a owl:Class ; rdfs:subClassOf esaog:Actor ; rdfs:label "Tool" .
+esaog:AutomatedService a owl:Class ; rdfs:subClassOf esaog:Actor .
+esaog:HumanActor a owl:Class ; rdfs:subClassOf esaog:Actor, prov:Person .
+esaog:AutomatedService owl:disjointWith esaog:HumanActor .
+esaog:Capability a owl:Class ; rdfs:label "Capability" ;
+    rdfs:comment "Capabilities are modelled as classes (punned as individuals in hasCapability assertions) so that OWL subsumption and equivalence yield capability satisfaction." .
+esaog:Skill a owl:Class ; rdfs:subClassOf esaog:Capability .
+esaog:DataType a owl:Class ; rdfs:label "Data type" .
+esaog:InputType a owl:Class ; rdfs:subClassOf esaog:DataType .
+esaog:OutputType a owl:Class ; rdfs:subClassOf esaog:DataType .
+esaog:QualityAttribute a owl:Class .
+esaog:hasCapability a owl:ObjectProperty ; rdfs:domain esaog:Actor .
+esaog:requiresCapability a owl:ObjectProperty ; rdfs:domain esaog:Task .
+esaog:acceptsInput a owl:ObjectProperty ; rdfs:domain esaog:Actor .
+esaog:producesOutput a owl:ObjectProperty ; rdfs:domain esaog:Actor .
+esaog:requiresInput a owl:ObjectProperty ; rdfs:domain esaog:Task .
+esaog:requiresOutput a owl:ObjectProperty ; rdfs:domain esaog:Task .
+esaog:availableAs a owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:comment "Runtime binding, e.g. mcp://tool-name." .
+esaog:available a owl:DatatypeProperty ; rdfs:range xsd:boolean .
+esaog:declaredQuality a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+esaog:costPerCall a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+esaog:expectedLatency a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+esaog:description a owl:AnnotationProperty .
+
+# ---------------------------------------------------------------- O_W
+esaog:Workflow a owl:Class ; rdfs:subClassOf prov:Plan .
+esaog:WorkflowVersion a owl:Class ; rdfs:subClassOf esaog:Workflow .
+esaog:Step a owl:Class .
+esaog:ExecutableStep a owl:Class ; rdfs:subClassOf esaog:Step .
+esaog:Branch a owl:Class ; rdfs:subClassOf esaog:Step .
+esaog:Join a owl:Class ; rdfs:subClassOf esaog:Step .
+esaog:Retry a owl:Class .
+esaog:Delegation a owl:Class ; rdfs:subClassOf esaog:Step .
+esaog:HumanApproval a owl:Class ; rdfs:subClassOf esaog:Step .
+esaog:hasStep a owl:ObjectProperty ; rdfs:domain esaog:Workflow ; rdfs:range esaog:Step .
+esaog:realizesTask a owl:ObjectProperty ; rdfs:domain esaog:Step ; rdfs:range esaog:Task .
+esaog:assignedAgent a owl:ObjectProperty, owl:FunctionalProperty ; rdfs:domain esaog:Step ; rdfs:range esaog:Actor .
+esaog:nextStep a owl:ObjectProperty ; rdfs:domain esaog:Step ; rdfs:range esaog:Step .
+esaog:consumesFrom a owl:ObjectProperty ; rdfs:domain esaog:Step ; rdfs:range esaog:Step .
+esaog:fallbackTo a owl:ObjectProperty .
+esaog:requiresApproval a owl:DatatypeProperty ; rdfs:range xsd:boolean .
+esaog:usesTool a owl:ObjectProperty ; rdfs:range esaog:Tool .
+esaog:committed a owl:DatatypeProperty ; rdfs:range xsd:boolean .
+
+# ---------------------------------------------------------------- O_R
+esaog:Execution a owl:Class ; rdfs:subClassOf prov:Activity .
+esaog:Invocation a owl:Class ; rdfs:subClassOf esaog:Execution .
+esaog:ExecutionState a owl:Class .
+esaog:Succeeded a esaog:ExecutionState .
+esaog:Failed a esaog:ExecutionState .
+esaog:Observation a owl:Class ; rdfs:subClassOf prov:Entity .
+esaog:Failure a owl:Class ; rdfs:subClassOf esaog:Observation .
+esaog:AgentUnavailable a owl:Class ; rdfs:subClassOf esaog:Failure .
+esaog:TypeMismatch a owl:Class ; rdfs:subClassOf esaog:Failure .
+esaog:TransientError a owl:Class ; rdfs:subClassOf esaog:Failure .
+esaog:MissingInput a owl:Class ; rdfs:subClassOf esaog:Failure .
+esaog:RecoveryStrategy a owl:Class ; rdfs:subClassOf prov:Activity .
+esaog:Artifact a owl:Class ; rdfs:subClassOf prov:Entity .
+esaog:executesStep a owl:ObjectProperty ; rdfs:domain esaog:Execution ; rdfs:range esaog:Step .
+esaog:executesTask a owl:ObjectProperty ; rdfs:domain esaog:Execution ; rdfs:range esaog:Task .
+esaog:hasState a owl:ObjectProperty ; rdfs:range esaog:ExecutionState .
+esaog:observedBy a owl:ObjectProperty .
+esaog:failedWith a owl:ObjectProperty ; rdfs:range esaog:Failure .
+esaog:recoveredBy a owl:ObjectProperty ; rdfs:range esaog:RecoveryStrategy .
+esaog:replacesExecution a owl:ObjectProperty ; rdfs:subPropertyOf prov:wasInformedBy .
+esaog:decisionJustification a owl:DatatypeProperty .
+esaog:artifactType a owl:ObjectProperty ; rdfs:range esaog:DataType .
+
+# ---------------------------------------------------------------- O_P
+esaog:Policy a owl:Class .
+esaog:Authorization a owl:Class ; rdfs:subClassOf esaog:Policy .
+esaog:Obligation a owl:Class ; rdfs:subClassOf esaog:Policy .
+esaog:Prohibition a owl:Class ; rdfs:subClassOf esaog:Policy .
+esaog:DataSensitivity a owl:Class .
+esaog:Budget a owl:Class .
+esaog:PersonalData a esaog:DataSensitivity ; rdfs:label "personal data (PII)" .
+esaog:clearanceLevel a owl:DatatypeProperty ; rdfs:range xsd:integer .
+esaog:sensitivityLevel a owl:DatatypeProperty ; rdfs:range xsd:integer .
+esaog:handlesDataCategory a owl:ObjectProperty ; rdfs:range esaog:DataSensitivity .
+esaog:hostedExternally a owl:DatatypeProperty ; rdfs:range xsd:boolean .
+esaog:authorizedFor a owl:ObjectProperty .
+esaog:governedBy a owl:ObjectProperty ; rdfs:range esaog:Policy .
+esaog:prohibits a owl:ObjectProperty .
+esaog:budgetLimit a owl:DatatypeProperty ; rdfs:range xsd:decimal .
+esaog:mustBeRealizedBy a owl:ObjectProperty ;
+    rdfs:comment "Obligation: tasks requiring this capability must be assigned to an actor of the given class." .
+
+# ---------------------------------------------------------------- O_Prov
+# PROV-O is reused directly: prov:Entity, prov:Activity, prov:Agent, prov:used,
+# prov:wasGeneratedBy, prov:wasAssociatedWith, prov:wasDerivedFrom,
+# prov:wasRevisionOf, prov:startedAtTime, prov:endedAtTime, prov:qualifiedAssociation.

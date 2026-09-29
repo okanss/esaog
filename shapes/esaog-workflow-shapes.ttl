@@ -1,0 +1,88 @@
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix esaog: <https://w3id.org/esaog/core#> .
+@prefix esh:   <https://w3id.org/esaog/shapes#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+# Closed-world workflow validation shapes (ESAOG gate "ShapeConformant + DataflowValid
+# + obligation part of PolicyCompliant"). Per-assignment eligibility (capability
+# entailment, availability, clearance, prohibition, budget) is enforced by the A1
+# SPARQL query; the shapes below validate relational workflow structure that depends
+# on the concrete assignments of several steps.
+# rdfs:subClassOf in the data graph is the reasoner-materialised closure (reflexive).
+
+esh:  sh:declare [ sh:prefix "esaog" ; sh:namespace "https://w3id.org/esaog/core#"^^xsd:anyURI ] ,
+                 [ sh:prefix "rdfs" ; sh:namespace "http://www.w3.org/2000/01/rdf-schema#"^^xsd:anyURI ] .
+
+esh:StepCardinalityShape a sh:NodeShape ;
+    sh:targetClass esaog:ExecutableStep ;
+    sh:property [ sh:path esaog:assignedAgent ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:message "Cardinality: an executable step needs exactly one committed assignment" ] ;
+    sh:property [ sh:path esaog:realizesTask ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:message "Cardinality: a step realises exactly one task" ] .
+
+esh:DataflowInputShape a sh:NodeShape ;
+    sh:targetClass esaog:ExecutableStep ;
+    sh:sparql [ a sh:SPARQLConstraint ; sh:prefixes esh: ;
+        sh:message "IOIncompatible: assigned actor does not accept the upstream output type" ;
+        sh:select """
+        SELECT $this ?value WHERE {
+            $this esaog:assignedAgent ?value ; esaog:consumesFrom ?u .
+            ?u esaog:assignedAgent ?ua . ?ua esaog:producesOutput ?t .
+            FILTER NOT EXISTS { ?value esaog:acceptsInput ?acc . ?t rdfs:subClassOf ?acc . }
+        }""" ] .
+
+esh:GoalInputShape a sh:NodeShape ;
+    sh:targetClass esaog:ExecutableStep ;
+    sh:sparql [ a sh:SPARQLConstraint ; sh:prefixes esh: ;
+        sh:message "IOIncompatible: assigned actor does not accept the goal-provided input type" ;
+        sh:select """
+        SELECT $this ?value WHERE {
+            $this esaog:assignedAgent ?value ; esaog:consumesGoalInput ?t .
+            FILTER NOT EXISTS { ?value esaog:acceptsInput ?acc . ?t rdfs:subClassOf ?acc . }
+        }""" ] .
+
+esh:OutputTypeShape a sh:NodeShape ;
+    sh:targetClass esaog:ExecutableStep ;
+    sh:sparql [ a sh:SPARQLConstraint ; sh:prefixes esh: ;
+        sh:message "IOIncompatible: actor output type is not subsumed by the task's required output" ;
+        sh:select """
+        SELECT $this ?value WHERE {
+            $this esaog:assignedAgent ?value ; esaog:realizesTask ?task .
+            ?task esaog:requiresOutput ?o . ?value esaog:producesOutput ?p .
+            FILTER NOT EXISTS { ?p rdfs:subClassOf ?o . }
+        }""" ] .
+
+esh:InputCoverageShape a sh:NodeShape ;
+    sh:targetClass esaog:ExecutableStep ;
+    sh:sparql [ a sh:SPARQLConstraint ; sh:prefixes esh: ;
+        sh:message "MissingProducer: a required input of the task is produced by no upstream step" ;
+        sh:select """
+        SELECT $this ?value WHERE {
+            $this esaog:realizesTask ?task . ?task esaog:requiresInput ?value .
+            FILTER NOT EXISTS { $this esaog:consumesFrom ?u . ?u esaog:realizesTask ?ut .
+                                ?ut esaog:requiresOutput ?o . ?o rdfs:subClassOf ?value . }
+            FILTER NOT EXISTS { $this esaog:consumesGoalInput ?gi . ?gi rdfs:subClassOf ?value . }
+        }""" ] .
+
+esh:GoalOutputShape a sh:NodeShape ;
+    sh:targetClass esaog:WorkflowVersion ;
+    sh:sparql [ a sh:SPARQLConstraint ; sh:prefixes esh: ;
+        sh:message "MissingProducer: the goal's requested output is produced by no step" ;
+        sh:select """
+        SELECT $this ?value WHERE {
+            $this esaog:forGoal ?g . ?g esaog:requestsOutput ?value .
+            FILTER NOT EXISTS { $this esaog:hasStep ?s . ?s esaog:realizesTask ?t .
+                                ?t esaog:requiresOutput ?o . ?o rdfs:subClassOf ?value . }
+        }""" ] .
+
+esh:ObligationShape a sh:NodeShape ;
+    sh:targetClass esaog:ExecutableStep ;
+    sh:sparql [ a sh:SPARQLConstraint ; sh:prefixes esh: ;
+        sh:message "ObligationViolation: capability must be realised by a specific actor class (e.g. HumanActor)" ;
+        sh:select """
+        SELECT $this ?value WHERE {
+            $this esaog:assignedAgent ?value ; esaog:realizesTask ?t .
+            ?t esaog:requiresCapability ?req . ?req rdfs:subClassOf ?h . ?h esaog:mustBeRealizedBy ?cls .
+            FILTER NOT EXISTS { ?value a ?cls . }
+        }""" ] .

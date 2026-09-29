@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software or data, please cite it as below."
+title: "ESAOG: reference implementation, SOST benchmark and experimental results"
+authors:
+  - family-names: Bursa
+    given-names: Okan
+    affiliation: "Department of Computer Engineering, İzmir Bakırçay University, İzmir, Türkiye"
+version: 1.0.0
+date-released: 2026-09-29
+license: MIT
+repository-code: "https://github.com/okanss/esaog"
+preferred-citation:
+  type: article
+  title: "ESAOG: An Executable Semantic Agent Orchestration Graph for Capability-Aware, Governed, and Adaptive LLM Multi-Agent Workflows"
+  authors:
+    - family-names: Bursa
+      given-names: Okan
+  year: 2026
+  notes: "Manuscript under submission."

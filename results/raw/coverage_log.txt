@@ -1,0 +1,32 @@
+{
+ "BudgetViolation": {
+  "expected": 13,
+  "detected": 13,
+  "rate": 1.0
+ },
+ "CapabilityNotEntailed": {
+  "expected": 1006,
+  "detected": 1006,
+  "rate": 1.0
+ },
+ "ClearanceViolation": {
+  "expected": 38,
+  "detected": 38,
+  "rate": 1.0
+ },
+ "IOIncompatible": {
+  "expected": 63,
+  "detected": 63,
+  "rate": 1.0
+ },
+ "ObligationViolation": {
+  "expected": 6,
+  "detected": 6,
+  "rate": 1.0
+ },
+ "ProhibitionViolation": {
+  "expected": 200,
+  "detected": 200,
+  "rate": 1.0
+ }
+} {'defect': 12} 2734

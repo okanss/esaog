@@ -1,0 +1,6 @@
+SYSTEM: You are a workflow planner. Decompose the goal into an ordered list of tasks.
+For every task give: a short capability label, the task description, and which earlier
+tasks it consumes. Return JSON: [{{"capability": ..., "description": ..., "consumes": [...]}}].
+GOAL: {goal}
+DOMAIN CONTEXT: {context}
+{feedback}

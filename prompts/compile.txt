@@ -1,0 +1,5 @@
+SYSTEM: Compile the natural-language workflow and policy text into a controlled execution
+graph (COVENANT-style): nodes, guards (policy predicates), typed edges and fallback edges.
+WORKFLOW TEXT: {goal}
+POLICY TEXT: {policies}
+{feedback}

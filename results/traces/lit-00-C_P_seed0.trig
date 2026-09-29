@@ -1,0 +1,1272 @@
+@prefix ns1: <https://w3id.org/esaog/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/esaog/graph/workflow> {
+    <https://w3id.org/esaog/run/lit-00-C/P/0/workflow/v4> a ns1:WorkflowVersion ;
+        prov:wasRevisionOf <https://w3id.org/esaog/run/lit-00-C/P/0/workflow/v3> ;
+        ns1:forGoal <https://w3id.org/esaog/lit#goal_literature_00> ;
+        ns1:hasStep <https://w3id.org/esaog/run/lit-00-C/P/0/step/appraise>,
+            <https://w3id.org/esaog/run/lit-00-C/P/0/step/extract>,
+            <https://w3id.org/esaog/run/lit-00-C/P/0/step/screen>,
+            <https://w3id.org/esaog/run/lit-00-C/P/0/step/search>,
+            <https://w3id.org/esaog/run/lit-00-C/P/0/step/synth> .
+
+    <https://w3id.org/esaog/lit#task_synth> a ns1:Task ;
+        ns1:budgetLimit 0.1 ;
+        ns1:dependsOn <https://w3id.org/esaog/lit#task_appraise>,
+            <https://w3id.org/esaog/lit#task_extract> ;
+        ns1:requiresCapability <https://w3id.org/esaog/lit#MetaAnalysis> ;
+        ns1:requiresInput <https://w3id.org/esaog/lit#AppraisalReport>,
+            <https://w3id.org/esaog/lit#ExtractionTable> ;
+        ns1:requiresOutput <https://w3id.org/esaog/lit#SynthesisReport> ;
+        ns1:sensitivityLevel 1 .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/step/synth> a ns1:ExecutableStep ;
+        ns1:assignedAgent <https://w3id.org/esaog/lit#synth_agent_013> ;
+        ns1:consumesFrom <https://w3id.org/esaog/run/lit-00-C/P/0/step/appraise>,
+            <https://w3id.org/esaog/run/lit-00-C/P/0/step/extract> ;
+        ns1:realizesTask <https://w3id.org/esaog/lit#task_synth> .
+
+    <https://w3id.org/esaog/lit#task_appraise> a ns1:Task ;
+        ns1:budgetLimit 0.1 ;
+        ns1:dependsOn <https://w3id.org/esaog/lit#task_screen> ;
+        ns1:requiresCapability <https://w3id.org/esaog/lit#QualityAppraisal> ;
+        ns1:requiresInput <https://w3id.org/esaog/lit#ScreenedRecordSet> ;
+        ns1:requiresOutput <https://w3id.org/esaog/lit#AppraisalReport> ;
+        ns1:sensitivityLevel 1 .
+
+    <https://w3id.org/esaog/lit#task_extract> a ns1:Task ;
+        ns1:budgetLimit 0.1 ;
+        ns1:dependsOn <https://w3id.org/esaog/lit#task_screen> ;
+        ns1:requiresCapability <https://w3id.org/esaog/lit#EvidenceExtraction> ;
+        ns1:requiresInput <https://w3id.org/esaog/lit#ScreenedRecordSet> ;
+        ns1:requiresOutput <https://w3id.org/esaog/lit#ExtractionTable> ;
+        ns1:sensitivityLevel 2 .
+
+    <https://w3id.org/esaog/lit#task_search> a ns1:Task ;
+        ns1:budgetLimit 0.1 ;
+        ns1:handlesDataCategory ns1:PersonalData ;
+        ns1:requiresCapability <https://w3id.org/esaog/lit#LiteratureSearch> ;
+        ns1:requiresInput <https://w3id.org/esaog/lit#ResearchQuestion> ;
+        ns1:requiresOutput <https://w3id.org/esaog/lit#BibliographicRecordSet> ;
+        ns1:sensitivityLevel 2 .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/step/appraise> a ns1:ExecutableStep ;
+        ns1:assignedAgent <https://w3id.org/esaog/lit#appraise_agent_010> ;
+        ns1:consumesFrom <https://w3id.org/esaog/run/lit-00-C/P/0/step/screen> ;
+        ns1:realizesTask <https://w3id.org/esaog/lit#task_appraise> .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/step/extract> a ns1:ExecutableStep ;
+        ns1:assignedAgent <https://w3id.org/esaog/lit#extract_spec_020> ;
+        ns1:consumesFrom <https://w3id.org/esaog/run/lit-00-C/P/0/step/screen> ;
+        ns1:realizesTask <https://w3id.org/esaog/lit#task_extract> .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/step/search> a ns1:ExecutableStep ;
+        ns1:assignedAgent <https://w3id.org/esaog/lit#search_alt_002> ;
+        ns1:consumesGoalInput <https://w3id.org/esaog/lit#ResearchQuestion> ;
+        ns1:realizesTask <https://w3id.org/esaog/lit#task_search> .
+
+    <https://w3id.org/esaog/lit#task_screen> a ns1:Task ;
+        ns1:budgetLimit 0.1 ;
+        ns1:dependsOn <https://w3id.org/esaog/lit#task_search> ;
+        ns1:requiresCapability <https://w3id.org/esaog/lit#Screening> ;
+        ns1:requiresInput <https://w3id.org/esaog/lit#BibliographicRecordSet> ;
+        ns1:requiresOutput <https://w3id.org/esaog/lit#ScreenedRecordSet> ;
+        ns1:sensitivityLevel 2 .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/step/screen> a ns1:ExecutableStep ;
+        ns1:assignedAgent <https://w3id.org/esaog/lit#screen_cloud_006> ;
+        ns1:consumesFrom <https://w3id.org/esaog/run/lit-00-C/P/0/step/search> ;
+        ns1:realizesTask <https://w3id.org/esaog/lit#task_screen> .
+}
+
+<https://w3id.org/esaog/graph/capability> {
+    <https://w3id.org/esaog/lit#appraise_alt_011> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#ScreenedRecordSet> ;
+        ns1:available true ;
+        ns1:availableAs "mcp://lit/appraise_alt_011" ;
+        ns1:clearanceLevel 3 ;
+        ns1:costPerCall 0.029 ;
+        ns1:declaredQuality 0.863 ;
+        ns1:description "Review quality appraisal service: appraise systematic reviews." ;
+        ns1:expectedLatency 2.39 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#ReviewQualityAppraisal> ;
+        ns1:hostedExternally false ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#RiskOfBiasReport> .
+
+    <https://w3id.org/esaog/lit#appraise_cloud_012> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#ScreenedRecordSet> ;
+        ns1:available true ;
+        ns1:availableAs "mcp://lit/appraise_cloud_012" ;
+        ns1:clearanceLevel 2 ;
+        ns1:costPerCall 0.0137 ;
+        ns1:declaredQuality 0.813 ;
+        ns1:description "Cloud-hosted RoB 2 assessment API (randomised-trial risk of bias)." ;
+        ns1:expectedLatency 3.15 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#RoB2Assessment> ;
+        ns1:hostedExternally true ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#AppraisalReport> .
+
+    <https://w3id.org/esaog/lit#extract_lookalike_022> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#ScreenedRecordSet> ;
+        ns1:available true ;
+        ns1:availableAs "mcp://lit/extract_lookalike_022" ;
+        ns1:clearanceLevel 3 ;
+        ns1:costPerCall 0.01 ;
+        ns1:declaredQuality 0.93 ;
+        ns1:description "Agent to extract study characteristics and outcome data from included studies on AI-assisted breast cancer screening with evidence extraction expertise." ;
+        ns1:expectedLatency 1.5 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#FinancialForecasting> ;
+        ns1:hostedExternally false ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#ExtractionTable> .
+
+    <https://w3id.org/esaog/lit#extract_spec_021> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#ScreenedRecordSet> ;
+        ns1:available true ;
+        ns1:availableAs "mcp://lit/extract_spec_021" ;
+        ns1:clearanceLevel 3 ;
+        ns1:costPerCall 0.03 ;
+        ns1:declaredQuality 0.86 ;
+        ns1:description "Pico extraction module (population/intervention/comparator/outcome extraction)." ;
+        ns1:expectedLatency 2.7 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#PICOExtraction> ;
+        ns1:hostedExternally false ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#PICOTable> .
+
+    <https://w3id.org/esaog/lit#generic_018> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#ResearchQuestion> ;
+        ns1:available true ;
+        ns1:availableAs "mcp://lit/generic_018" ;
+        ns1:clearanceLevel 1 ;
+        ns1:costPerCall 0.005 ;
+        ns1:declaredQuality 0.75 ;
+        ns1:description "General purpose assistant for web search and quick answers about AI-assisted breast cancer screening." ;
+        ns1:expectedLatency 1.0 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#WebSearch> ;
+        ns1:hostedExternally true ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#WebPageSet> .
+
+    <https://w3id.org/esaog/lit#premium_019> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#BibliographicRecordSet> ;
+        ns1:available true ;
+        ns1:availableAs "mcp://lit/premium_019" ;
+        ns1:clearanceLevel 3 ;
+        ns1:costPerCall 0.35 ;
+        ns1:declaredQuality 0.98 ;
+        ns1:description "Premium enterprise-grade study screening with guaranteed accuracy to screen retrieved records against the eligibility criteria for AI-assisted breast cancer screening." ;
+        ns1:expectedLatency 2.0 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#Screening> ;
+        ns1:hostedExternally false ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#ScreenedRecordSet> .
+
+    <https://w3id.org/esaog/lit#screen_agent_004> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#BibliographicRecordSet> ;
+        ns1:available false ;
+        ns1:availableAs "mcp://lit/screen_agent_004" ;
+        ns1:clearanceLevel 2 ;
+        ns1:costPerCall 0.0195 ;
+        ns1:declaredQuality 0.906 ;
+        ns1:description "Study screening agent that can screen retrieved records against the eligibility criteria." ;
+        ns1:expectedLatency 1.8 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#Screening> ;
+        ns1:hostedExternally false ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#ScreenedRecordSet> .
+
+    <https://w3id.org/esaog/lit#screen_alt_005> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#BibliographicRecordSet> ;
+        ns1:available true ;
+        ns1:availableAs "mcp://lit/screen_alt_005" ;
+        ns1:clearanceLevel 3 ;
+        ns1:costPerCall 0.0262 ;
+        ns1:declaredQuality 0.882 ;
+        ns1:description "Eligibility screening service: apply eligibility criteria." ;
+        ns1:expectedLatency 2.49 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#EligibilityScreening> ;
+        ns1:hostedExternally false ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#ScreenedRecordSet> .
+
+    <https://w3id.org/esaog/lit#search_agent_001> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#ResearchQuestion> ;
+        ns1:available true ;
+        ns1:availableAs "mcp://lit/search_agent_001" ;
+        ns1:clearanceLevel 2 ;
+        ns1:costPerCall 0.0235 ;
+        ns1:declaredQuality 0.916 ;
+        ns1:description "Literature search agent that can search bibliographic databases, cloud-hosted." ;
+        ns1:expectedLatency 1.78 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#LiteratureSearch> ;
+        ns1:hostedExternally true ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#BibliographicRecordSet> .
+
+    <https://w3id.org/esaog/lit#search_cloud_003> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#ResearchQuestion> ;
+        ns1:available true ;
+        ns1:availableAs "mcp://lit/search_cloud_003" ;
+        ns1:clearanceLevel 2 ;
+        ns1:costPerCall 0.0127 ;
+        ns1:declaredQuality 0.813 ;
+        ns1:description "Cloud-hosted PubMed search API (MeSH-indexed MEDLINE retrieval)." ;
+        ns1:expectedLatency 3.22 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#PubMedSearch> ;
+        ns1:hostedExternally true ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#BibliographicRecordSet> .
+
+    <https://w3id.org/esaog/lit#synth_alt_014> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#AppraisalReport>,
+            <https://w3id.org/esaog/lit#ExtractionTable> ;
+        ns1:available true ;
+        ns1:availableAs "mcp://lit/synth_alt_014" ;
+        ns1:clearanceLevel 3 ;
+        ns1:costPerCall 0.0296 ;
+        ns1:declaredQuality 0.889 ;
+        ns1:description "Meta-analysis service: quantitative pooling." ;
+        ns1:expectedLatency 2.83 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#MetaAnalysis> ;
+        ns1:hostedExternally false ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#MetaAnalysisReport> .
+
+    <https://w3id.org/esaog/lit#synth_cloud_015> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#AppraisalReport>,
+            <https://w3id.org/esaog/lit#ExtractionTable> ;
+        ns1:available true ;
+        ns1:availableAs "mcp://lit/synth_cloud_015" ;
+        ns1:clearanceLevel 2 ;
+        ns1:costPerCall 0.014 ;
+        ns1:declaredQuality 0.786 ;
+        ns1:description "Cloud-hosted meta-analysis API (quantitative pooling)." ;
+        ns1:expectedLatency 3.36 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#MetaAnalysis> ;
+        ns1:hostedExternally true ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#SynthesisReport> .
+
+    <https://w3id.org/esaog/lit#synth_general_017> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#AppraisalReport>,
+            <https://w3id.org/esaog/lit#ExtractionTable> ;
+        ns1:available true ;
+        ns1:availableAs "mcp://lit/synth_general_017" ;
+        ns1:clearanceLevel 2 ;
+        ns1:costPerCall 0.0154 ;
+        ns1:declaredQuality 0.816 ;
+        ns1:description "General evidence synthesis assistant." ;
+        ns1:expectedLatency 1.54 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#EvidenceSynthesis> ;
+        ns1:hostedExternally false ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#SynthesisReport> .
+
+    <https://w3id.org/esaog/lit#synth_sib_016> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#AppraisalReport>,
+            <https://w3id.org/esaog/lit#ExtractionTable> ;
+        ns1:available true ;
+        ns1:availableAs "mcp://lit/synth_sib_016" ;
+        ns1:clearanceLevel 2 ;
+        ns1:costPerCall 0.0163 ;
+        ns1:declaredQuality 0.891 ;
+        ns1:description "Narrative synthesis agent: qualitative narrative summary to synthesise the extracted evidence and quality appraisal into a pooled summary." ;
+        ns1:expectedLatency 2.11 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#NarrativeSynthesis> ;
+        ns1:hostedExternally false ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#SynthesisReport> .
+
+    <https://w3id.org/esaog/lit#appraise_agent_010> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#ScreenedRecordSet> ;
+        ns1:available true ;
+        ns1:availableAs "mcp://lit/appraise_agent_010" ;
+        ns1:clearanceLevel 2 ;
+        ns1:costPerCall 0.0167 ;
+        ns1:declaredQuality 0.916 ;
+        ns1:description "Quality appraisal agent that can assess the risk of bias and methodological quality of included studies." ;
+        ns1:expectedLatency 2.11 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#QualityAppraisal> ;
+        ns1:hostedExternally false ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#AppraisalReport> .
+
+    <https://w3id.org/esaog/lit#extract_spec_020> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#ScreenedRecordSet> ;
+        ns1:available true ;
+        ns1:availableAs "mcp://lit/extract_spec_020" ;
+        ns1:clearanceLevel 3 ;
+        ns1:costPerCall 0.02 ;
+        ns1:declaredQuality 0.9 ;
+        ns1:description "Outcome data extraction module (effect-size extraction)." ;
+        ns1:expectedLatency 2.2 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#OutcomeDataExtraction> ;
+        ns1:hostedExternally false ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#PICOTable> .
+
+    <https://w3id.org/esaog/lit#screen_cloud_006> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#BibliographicRecordSet> ;
+        ns1:available true ;
+        ns1:availableAs "mcp://lit/screen_cloud_006" ;
+        ns1:clearanceLevel 2 ;
+        ns1:costPerCall 0.011 ;
+        ns1:declaredQuality 0.785 ;
+        ns1:description "Cloud-hosted title and abstract screening API (first-pass screening)." ;
+        ns1:expectedLatency 3.35 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#TitleAbstractScreening> ;
+        ns1:hostedExternally true ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#ScreenedRecordSet> .
+
+    <https://w3id.org/esaog/lit#search_alt_002> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#ResearchQuestion> ;
+        ns1:available true ;
+        ns1:availableAs "mcp://lit/search_alt_002" ;
+        ns1:clearanceLevel 3 ;
+        ns1:costPerCall 0.032 ;
+        ns1:declaredQuality 0.875 ;
+        ns1:description "Citation index search service: forward/backward citation chasing." ;
+        ns1:expectedLatency 2.73 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#CitationIndexSearch> ;
+        ns1:hostedExternally false ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#PeerReviewedRecordSet> .
+
+    <https://w3id.org/esaog/lit#synth_agent_013> a ns1:Actor,
+            ns1:Agent,
+            ns1:AutomatedService ;
+        ns1:acceptsInput <https://w3id.org/esaog/lit#AppraisalReport>,
+            <https://w3id.org/esaog/lit#ExtractionTable> ;
+        ns1:available true ;
+        ns1:availableAs "mcp://lit/synth_agent_013" ;
+        ns1:clearanceLevel 2 ;
+        ns1:costPerCall 0.0154 ;
+        ns1:declaredQuality 0.892 ;
+        ns1:description "Meta-analysis agent that can synthesise the extracted evidence and quality appraisal into a pooled summary." ;
+        ns1:expectedLatency 2.2 ;
+        ns1:hasCapability <https://w3id.org/esaog/lit#MetaAnalysis> ;
+        ns1:hostedExternally false ;
+        ns1:producesOutput <https://w3id.org/esaog/lit#SynthesisReport> .
+}
+
+<https://w3id.org/esaog/graph/execution> {
+    <https://w3id.org/esaog/lit#goal_literature_00/artifact/synth/5> a ns1:Artifact ;
+        prov:wasDerivedFrom <https://w3id.org/esaog/lit#goal_literature_00/artifact/appraise/4>,
+            <https://w3id.org/esaog/lit#goal_literature_00/artifact/extract/3> ;
+        prov:wasGeneratedBy <https://w3id.org/esaog/run/lit-00-C/P/0/exec/7> ;
+        ns1:artifactType <https://w3id.org/esaog/lit#SynthesisReport> .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_agent_010/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_agent_010> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_agent_010/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_agent_010> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_agent_010/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_agent_010> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_agent_010/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_agent_010> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_agent_010/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_agent_010> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_agent_010/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_agent_010> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_agent_010/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_agent_010> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_agent_010/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_agent_010> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_agent_010/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_agent_010> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_agent_010/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_agent_010> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_alt_011/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_alt_011> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_alt_011/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_alt_011> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_alt_011/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_alt_011> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_alt_011/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_alt_011> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_alt_011/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_alt_011> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_alt_011/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_alt_011> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_alt_011/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_alt_011> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_alt_011/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_alt_011> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_alt_011/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_alt_011> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_alt_011/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_alt_011> ;
+        ns1:hasState ns1:Failed .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_cloud_012/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_cloud_012> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_cloud_012/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_cloud_012> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_cloud_012/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_cloud_012> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_cloud_012/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_cloud_012> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_cloud_012/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_cloud_012> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_cloud_012/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_cloud_012> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_cloud_012/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_cloud_012> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_cloud_012/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_cloud_012> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_cloud_012/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_cloud_012> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/appraise_cloud_012/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_cloud_012> ;
+        ns1:hasState ns1:Failed .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_lookalike_022/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_lookalike_022> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_lookalike_022/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_lookalike_022> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_lookalike_022/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_lookalike_022> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_lookalike_022/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_lookalike_022> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_lookalike_022/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_lookalike_022> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_lookalike_022/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_lookalike_022> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_lookalike_022/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_lookalike_022> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_lookalike_022/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_lookalike_022> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_lookalike_022/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_lookalike_022> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_lookalike_022/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_lookalike_022> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_020/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_020> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_020/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_020> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_020/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_020> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_020/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_020> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_020/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_020> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_020/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_020> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_020/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_020> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_020/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_020> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_020/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_020> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_020/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_020> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_021/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_021> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_021/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_021> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_021/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_021> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_021/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_021> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_021/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_021> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_021/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_021> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_021/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_021> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_021/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_021> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_021/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_021> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/extract_spec_021/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_021> ;
+        ns1:hasState ns1:Failed .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/generic_018/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#generic_018> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/generic_018/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#generic_018> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/generic_018/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#generic_018> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/generic_018/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#generic_018> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/generic_018/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#generic_018> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/generic_018/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#generic_018> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/generic_018/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#generic_018> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/generic_018/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#generic_018> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/generic_018/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#generic_018> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/generic_018/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#generic_018> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/premium_019/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#premium_019> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/premium_019/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#premium_019> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/premium_019/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#premium_019> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/premium_019/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#premium_019> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/premium_019/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#premium_019> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/premium_019/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#premium_019> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/premium_019/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#premium_019> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/premium_019/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#premium_019> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/premium_019/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#premium_019> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/premium_019/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#premium_019> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_agent_004/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_agent_004> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_agent_004/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_agent_004> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_agent_004/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_agent_004> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_agent_004/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_agent_004> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_agent_004/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_agent_004> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_agent_004/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_agent_004> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_agent_004/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_agent_004> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_agent_004/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_agent_004> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_agent_004/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_agent_004> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_agent_004/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_agent_004> ;
+        ns1:hasState ns1:Failed .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_alt_005/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_alt_005> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_alt_005/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_alt_005> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_alt_005/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_alt_005> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_alt_005/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_alt_005> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_alt_005/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_alt_005> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_alt_005/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_alt_005> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_alt_005/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_alt_005> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_alt_005/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_alt_005> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_alt_005/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_alt_005> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_alt_005/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_alt_005> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_cloud_006/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_cloud_006> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_cloud_006/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_cloud_006> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_cloud_006/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_cloud_006> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_cloud_006/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_cloud_006> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_cloud_006/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_cloud_006> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_cloud_006/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_cloud_006> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_cloud_006/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_cloud_006> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_cloud_006/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_cloud_006> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_cloud_006/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_cloud_006> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/screen_cloud_006/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_cloud_006> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_agent_001/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_agent_001> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_agent_001/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_agent_001> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_agent_001/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_agent_001> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_agent_001/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_agent_001> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_agent_001/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_agent_001> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_agent_001/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_agent_001> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_agent_001/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_agent_001> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_agent_001/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_agent_001> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_agent_001/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_agent_001> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_agent_001/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_agent_001> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_alt_002/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_alt_002> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_alt_002/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_alt_002> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_alt_002/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_alt_002> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_alt_002/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_alt_002> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_alt_002/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_alt_002> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_alt_002/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_alt_002> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_alt_002/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_alt_002> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_alt_002/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_alt_002> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_alt_002/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_alt_002> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_alt_002/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_alt_002> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_cloud_003/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_cloud_003> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_cloud_003/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_cloud_003> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_cloud_003/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_cloud_003> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_cloud_003/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_cloud_003> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_cloud_003/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_cloud_003> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_cloud_003/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_cloud_003> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_cloud_003/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_cloud_003> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_cloud_003/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_cloud_003> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_cloud_003/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_cloud_003> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/search_cloud_003/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_cloud_003> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_agent_013/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_agent_013> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_agent_013/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_agent_013> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_agent_013/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_agent_013> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_agent_013/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_agent_013> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_agent_013/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_agent_013> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_agent_013/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_agent_013> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_agent_013/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_agent_013> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_agent_013/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_agent_013> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_agent_013/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_agent_013> ;
+        ns1:hasState ns1:Failed .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_agent_013/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_agent_013> ;
+        ns1:hasState ns1:Failed .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_alt_014/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_alt_014> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_alt_014/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_alt_014> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_alt_014/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_alt_014> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_alt_014/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_alt_014> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_alt_014/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_alt_014> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_alt_014/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_alt_014> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_alt_014/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_alt_014> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_alt_014/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_alt_014> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_alt_014/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_alt_014> ;
+        ns1:hasState ns1:Failed .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_alt_014/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_alt_014> ;
+        ns1:hasState ns1:Failed .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_cloud_015/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_cloud_015> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_cloud_015/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_cloud_015> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_cloud_015/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_cloud_015> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_cloud_015/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_cloud_015> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_cloud_015/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_cloud_015> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_cloud_015/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_cloud_015> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_cloud_015/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_cloud_015> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_cloud_015/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_cloud_015> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_cloud_015/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_cloud_015> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_cloud_015/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_cloud_015> ;
+        ns1:hasState ns1:Failed .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_general_017/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_general_017> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_general_017/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_general_017> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_general_017/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_general_017> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_general_017/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_general_017> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_general_017/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_general_017> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_general_017/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_general_017> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_general_017/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_general_017> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_general_017/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_general_017> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_general_017/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_general_017> ;
+        ns1:hasState ns1:Failed .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_general_017/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_general_017> ;
+        ns1:hasState ns1:Failed .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_sib_016/0> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_sib_016> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_sib_016/1> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_sib_016> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_sib_016/2> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_sib_016> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_sib_016/3> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_sib_016> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_sib_016/4> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_sib_016> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_sib_016/5> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_sib_016> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_sib_016/6> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_sib_016> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_sib_016/7> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_sib_016> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_sib_016/8> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_sib_016> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/hist/synth_sib_016/9> a ns1:Execution ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_sib_016> ;
+        ns1:hasState ns1:Succeeded .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/exec/1> a ns1:Execution,
+            ns1:Invocation ;
+        prov:startedAtTime 0.0 ;
+        prov:used <https://w3id.org/esaog/lit#goal_literature_00/input> ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#search_alt_002> ;
+        ns1:decisionJustification "A1-ranked eligible candidate (SPARQL+OWL), SHACL-conformant workflow" ;
+        ns1:executesStep <https://w3id.org/esaog/run/lit-00-C/P/0/step/search> ;
+        ns1:executesTask <https://w3id.org/esaog/lit#task_search> ;
+        ns1:hasState ns1:Succeeded ;
+        ns1:inWorkflowVersion <https://w3id.org/esaog/run/lit-00-C/P/0/workflow/v2> ;
+        ns1:runLocal true .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/exec/2> a ns1:Execution,
+            ns1:Invocation ;
+        prov:startedAtTime 1.0 ;
+        prov:used <https://w3id.org/esaog/lit#goal_literature_00/artifact/search/1> ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_agent_004> ;
+        ns1:decisionJustification "A1-ranked eligible candidate (SPARQL+OWL), SHACL-conformant workflow" ;
+        ns1:executesStep <https://w3id.org/esaog/run/lit-00-C/P/0/step/screen> ;
+        ns1:executesTask <https://w3id.org/esaog/lit#task_screen> ;
+        ns1:failedWith <https://w3id.org/esaog/run/lit-00-C/P/0/failure/2> ;
+        ns1:hasState ns1:Failed ;
+        ns1:inWorkflowVersion <https://w3id.org/esaog/run/lit-00-C/P/0/workflow/v2> ;
+        ns1:runLocal true .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/exec/3> a ns1:Execution,
+            ns1:Invocation ;
+        prov:startedAtTime 2.0 ;
+        prov:used <https://w3id.org/esaog/lit#goal_literature_00/artifact/search/1> ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_cloud_006> ;
+        ns1:decisionJustification "recomposition after AgentUnavailable of screen_agent_004; provenance-ranked" ;
+        ns1:executesStep <https://w3id.org/esaog/run/lit-00-C/P/0/step/screen> ;
+        ns1:executesTask <https://w3id.org/esaog/lit#task_screen> ;
+        ns1:failedWith <https://w3id.org/esaog/run/lit-00-C/P/0/failure/3> ;
+        ns1:hasState ns1:Failed ;
+        ns1:inWorkflowVersion <https://w3id.org/esaog/run/lit-00-C/P/0/workflow/v3> ;
+        ns1:isRecovery true ;
+        ns1:recoveredBy <https://w3id.org/esaog/run/lit-00-C/P/0/recovery/3> ;
+        ns1:replacesExecution <https://w3id.org/esaog/run/lit-00-C/P/0/exec/2> ;
+        ns1:runLocal true .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/exec/4> a ns1:Execution,
+            ns1:Invocation ;
+        prov:startedAtTime 3.0 ;
+        prov:used <https://w3id.org/esaog/lit#goal_literature_00/artifact/search/1> ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#screen_cloud_006> ;
+        ns1:decisionJustification "recomposition after TransientError of screen_cloud_006; provenance-ranked" ;
+        ns1:executesStep <https://w3id.org/esaog/run/lit-00-C/P/0/step/screen> ;
+        ns1:executesTask <https://w3id.org/esaog/lit#task_screen> ;
+        ns1:hasState ns1:Succeeded ;
+        ns1:inWorkflowVersion <https://w3id.org/esaog/run/lit-00-C/P/0/workflow/v4> ;
+        ns1:isRecovery true ;
+        ns1:recoveredBy <https://w3id.org/esaog/run/lit-00-C/P/0/recovery/4> ;
+        ns1:replacesExecution <https://w3id.org/esaog/run/lit-00-C/P/0/exec/3> ;
+        ns1:runLocal true .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/exec/5> a ns1:Execution,
+            ns1:Invocation ;
+        prov:startedAtTime 4.0 ;
+        prov:used <https://w3id.org/esaog/lit#goal_literature_00/artifact/screen/2> ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#extract_spec_020> ;
+        ns1:decisionJustification "A1-ranked eligible candidate (SPARQL+OWL), SHACL-conformant workflow" ;
+        ns1:executesStep <https://w3id.org/esaog/run/lit-00-C/P/0/step/extract> ;
+        ns1:executesTask <https://w3id.org/esaog/lit#task_extract> ;
+        ns1:hasState ns1:Succeeded ;
+        ns1:inWorkflowVersion <https://w3id.org/esaog/run/lit-00-C/P/0/workflow/v4> ;
+        ns1:runLocal true .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/exec/6> a ns1:Execution,
+            ns1:Invocation ;
+        prov:startedAtTime 5.0 ;
+        prov:used <https://w3id.org/esaog/lit#goal_literature_00/artifact/screen/2> ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#appraise_agent_010> ;
+        ns1:decisionJustification "A1-ranked eligible candidate (SPARQL+OWL), SHACL-conformant workflow" ;
+        ns1:executesStep <https://w3id.org/esaog/run/lit-00-C/P/0/step/appraise> ;
+        ns1:executesTask <https://w3id.org/esaog/lit#task_appraise> ;
+        ns1:hasState ns1:Succeeded ;
+        ns1:inWorkflowVersion <https://w3id.org/esaog/run/lit-00-C/P/0/workflow/v4> ;
+        ns1:runLocal true .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/exec/7> a ns1:Execution,
+            ns1:Invocation ;
+        prov:startedAtTime 6.0 ;
+        prov:used <https://w3id.org/esaog/lit#goal_literature_00/artifact/appraise/4>,
+            <https://w3id.org/esaog/lit#goal_literature_00/artifact/extract/3> ;
+        prov:wasAssociatedWith <https://w3id.org/esaog/lit#synth_agent_013> ;
+        ns1:decisionJustification "A1-ranked eligible candidate (SPARQL+OWL), SHACL-conformant workflow" ;
+        ns1:executesStep <https://w3id.org/esaog/run/lit-00-C/P/0/step/synth> ;
+        ns1:executesTask <https://w3id.org/esaog/lit#task_synth> ;
+        ns1:hasState ns1:Succeeded ;
+        ns1:inWorkflowVersion <https://w3id.org/esaog/run/lit-00-C/P/0/workflow/v4> ;
+        ns1:runLocal true .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/failure/2> a ns1:AgentUnavailable .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/failure/3> a ns1:TransientError .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/recovery/3> a ns1:RecoveryStrategy .
+
+    <https://w3id.org/esaog/run/lit-00-C/P/0/recovery/4> a ns1:RecoveryStrategy .
+
+    <https://w3id.org/esaog/lit#goal_literature_00/artifact/appraise/4> a ns1:Artifact ;
+        prov:wasDerivedFrom <https://w3id.org/esaog/lit#goal_literature_00/artifact/screen/2> ;
+        prov:wasGeneratedBy <https://w3id.org/esaog/run/lit-00-C/P/0/exec/6> ;
+        ns1:artifactType <https://w3id.org/esaog/lit#AppraisalReport> .
+
+    <https://w3id.org/esaog/lit#goal_literature_00/artifact/extract/3> a ns1:Artifact ;
+        prov:wasDerivedFrom <https://w3id.org/esaog/lit#goal_literature_00/artifact/screen/2> ;
+        prov:wasGeneratedBy <https://w3id.org/esaog/run/lit-00-C/P/0/exec/5> ;
+        ns1:artifactType <https://w3id.org/esaog/lit#PICOTable> .
+
+    <https://w3id.org/esaog/lit#goal_literature_00/artifact/screen/2> a ns1:Artifact ;
+        prov:wasDerivedFrom <https://w3id.org/esaog/lit#goal_literature_00/artifact/search/1> ;
+        prov:wasGeneratedBy <https://w3id.org/esaog/run/lit-00-C/P/0/exec/4> ;
+        ns1:artifactType <https://w3id.org/esaog/lit#ScreenedRecordSet> .
+
+    <https://w3id.org/esaog/lit#goal_literature_00/artifact/search/1> a ns1:Artifact ;
+        prov:wasDerivedFrom <https://w3id.org/esaog/lit#goal_literature_00/input> ;
+        prov:wasGeneratedBy <https://w3id.org/esaog/run/lit-00-C/P/0/exec/1> ;
+        ns1:artifactType <https://w3id.org/esaog/lit#PeerReviewedRecordSet> .
+}
+
+<https://w3id.org/esaog/graph/knowledge> {
+    <https://w3id.org/esaog/lit#goal_literature_00> a ns1:Goal ;
+        rdfs:comment "Produce a verified evidence synthesis on AI-assisted breast cancer screening." ;
+        ns1:providesInput <https://w3id.org/esaog/lit#ResearchQuestion> ;
+        ns1:requestsOutput <https://w3id.org/esaog/lit#SynthesisReport> .
+}
+

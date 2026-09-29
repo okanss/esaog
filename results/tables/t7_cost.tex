@@ -1,0 +1,31 @@
+\begin{table}[H]
+\centering
+\caption{Latency, token and cost decomposition (means per workflow run). LLM and tool latencies are simulated (s); reasoning (HermiT, warm cache), SPARQL, SHACL and graph-write times are measured wall-clock (ms) on the experiment machine. Cold HermiT classification is reported separately in the text. Triples = size of $G_K\cup G_C\cup G_W\cup G_E$ plus the materialised closure at the end of the run.}
+\label{tab:costdecomp}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrrrrrrr}
+\toprule
+Method & LLM s & Tool s & Reason ms & SPARQL ms & SHACL ms & Write ms & Tok.\ in & Tok.\ out & LLM calls & Tool calls & LLM \$ & Tool \$ & Triples\\
+\midrule
+B0 & 0.0 & 8.5 & 0 & 0 & 0 & 0 & 0 & 0 & 0.0 & 5.2 & 0.0000 & 0.089 & 0\\
+B1 & 14.7 & 12.7 & 0 & 0 & 0 & 0 & 11090 & 632 & 7.4 & 6.2 & 0.0428 & 0.170 & 0\\
+B2 & 5.1 & 9.5 & 0 & 0 & 0 & 0 & 92 & 314 & 1.0 & 5.6 & 0.0050 & 0.167 & 0\\
+B3 & 5.1 & 10.7 & 0 & 4 & 0 & 40 & 92 & 314 & 1.0 & 5.7 & 0.0050 & 0.199 & 0\\
+B4 & 32.3 & 12.7 & 0 & 0 & 0 & 0 & 22166 & 1454 & 15.1 & 6.3 & 0.0883 & 0.191 & 0\\
+B5 & 0.0 & 8.3 & 0 & 58 & 0 & 45 & 0 & 0 & 0.0 & 4.1 & 0.0000 & 0.311 & 0\\
+B6 & 16.0 & 11.7 & 19 & 0 & 0 & 0 & 12776 & 673 & 8.3 & 5.3 & 0.0484 & 0.102 & 0\\
+B7 & 27.2 & 12.9 & 0 & 0 & 0 & 39 & 4349 & 1306 & 16.9 & 6.0 & 0.0326 & 0.237 & 0\\
+B8 & 30.3 & 10.6 & 0 & 0 & 0 & 0 & 23932 & 1288 & 15.5 & 5.0 & 0.0911 & 0.092 & 0\\
+\textbf{ESAOG} & 13.9 & 12.9 & 23 & 245 & 731 & 30 & 11183 & 603 & 6.5 & 5.8 & 0.0426 & 0.120 & 1466\\
+M1 & 13.9 & 6.5 & 20 & 213 & 623 & 30 & 11183 & 603 & 6.5 & 3.0 & 0.0426 & 0.058 & 1229\\
+M2 & 12.9 & 11.3 & 24 & 247 & 0 & 32 & 10856 & 549 & 6.2 & 5.5 & 0.0408 & 0.105 & 1461\\
+M3 & 13.9 & 12.4 & 24 & 90 & 756 & 32 & 11183 & 603 & 6.5 & 5.8 & 0.0426 & 0.118 & 1467\\
+M4 & 13.9 & 11.4 & 23 & 253 & 793 & 30 & 11183 & 603 & 6.5 & 5.5 & 0.0426 & 0.104 & 1378\\
+M5 & 13.9 & 12.7 & 25 & 251 & 766 & 34 & 11183 & 603 & 6.5 & 5.9 & 0.0426 & 0.117 & 1505\\
+M6 & 0.0 & 9.8 & 23 & 185 & 535 & 33 & 0 & 0 & 0.0 & 4.4 & 0.0000 & 0.093 & 1104\\
+M7 & 13.9 & 11.2 & 24 & 218 & 534 & 32 & 11183 & 603 & 6.5 & 5.4 & 0.0426 & 0.101 & 1461\\
+\bottomrule
+\end{tabular}}
+\end{table}

@@ -1,0 +1,114 @@
+=== 12:58:13 chunk lit-01
+120 runs (15 methods x 8 instances x 1 seeds); 4 distinct TBoxes classified
+done: 120 runs, 0 errors, 3055s
+=== 13:49:09 chunk lit-01 saved
+=== 13:49:09 chunk lit-02
+120 runs (15 methods x 8 instances x 1 seeds); 6 distinct TBoxes classified
+=== 14:18:47 STOPPED by user (resume with: bash scripts/qwen14b_rest.sh start)
+=== 20:23:28 chunk lit-02
+120 runs (15 methods x 8 instances x 1 seeds); 6 distinct TBoxes classified
+done: 120 runs, 0 errors, 2056s
+=== 20:57:46 chunk lit-02 saved
+=== 20:57:46 chunk lit-04
+120 runs (15 methods x 8 instances x 1 seeds); 2 distinct TBoxes classified
+=== 21:45:11 STOPPED by user (resume with: bash scripts/qwen14b_rest.sh start)
+=== 21:45:31 chunk lit-04
+120 runs (15 methods x 8 instances x 1 seeds); 2 distinct TBoxes classified
+done: 120 runs, 0 errors, 2797s
+=== 22:32:09 chunk lit-04 saved
+=== 22:32:09 chunk lit-05
+120 runs (15 methods x 8 instances x 1 seeds); 4 distinct TBoxes classified
+done: 120 runs, 0 errors, 4916s
+=== 23:54:05 chunk lit-05 saved
+=== 23:54:05 chunk lit-06
+=== 00:11:37 SWAP GUARD: 7032 MB swap -> restarting run
+120 runs (15 methods x 8 instances x 1 seeds); 2 distinct TBoxes classified
+=== 00:11:37 STOPPED by user (resume with: bash scripts/qwen14b_rest.sh start)
+=== 00:11:57 chunk lit-06
+120 runs (15 methods x 8 instances x 1 seeds); 2 distinct TBoxes classified
+done: 120 runs, 0 errors, 5491s
+=== 01:43:28 chunk lit-06 saved
+=== 01:43:28 chunk lit-07
+120 runs (15 methods x 8 instances x 1 seeds); 4 distinct TBoxes classified
+done: 120 runs, 0 errors, 2243s
+=== 02:20:52 chunk lit-07 saved
+=== 02:20:52 chunk sw-01
+=== 02:27:17 SWAP GUARD: 7040 MB swap -> restarting run
+120 runs (15 methods x 8 instances x 1 seeds); 6 distinct TBoxes classified
+=== 02:27:17 STOPPED by user (resume with: bash scripts/qwen14b_rest.sh start)
+=== 02:27:37 chunk sw-01
+120 runs (15 methods x 8 instances x 1 seeds); 6 distinct TBoxes classified
+done: 120 runs, 0 errors, 1931s
+=== 02:59:49 chunk sw-01 saved
+=== 02:59:49 chunk sw-02
+=== 03:55:39 SWAP GUARD: 7001 MB swap -> restarting run
+120 runs (15 methods x 8 instances x 1 seeds); 2 distinct TBoxes classified
+=== 03:55:39 STOPPED by user (resume with: bash scripts/qwen14b_rest.sh start)
+=== 03:55:59 chunk sw-02
+120 runs (15 methods x 8 instances x 1 seeds); 2 distinct TBoxes classified
+done: 120 runs, 0 errors, 660s
+=== 04:07:00 chunk sw-02 saved
+=== 04:07:00 chunk sw-04
+120 runs (15 methods x 8 instances x 1 seeds); 2 distinct TBoxes classified
+done: 120 runs, 0 errors, 3568s
+=== 05:06:29 chunk sw-04 saved
+=== 05:06:29 chunk sw-05
+120 runs (15 methods x 8 instances x 1 seeds); 2 distinct TBoxes classified
+done: 120 runs, 0 errors, 2456s
+=== 05:47:25 chunk sw-05 saved
+=== 05:47:25 chunk sw-06
+=== 05:48:01 SWAP GUARD: 7233 MB swap -> restarting run
+120 runs (15 methods x 8 instances x 1 seeds); 4 distinct TBoxes classified
+=== 05:48:02 STOPPED by user (resume with: bash scripts/qwen14b_rest.sh start)
+=== 05:48:22 chunk sw-06
+120 runs (15 methods x 8 instances x 1 seeds); 4 distinct TBoxes classified
+done: 120 runs, 0 errors, 2564s
+=== 06:31:07 chunk sw-06 saved
+=== 06:31:07 chunk sw-07
+120 runs (15 methods x 8 instances x 1 seeds); 4 distinct TBoxes classified
+done: 120 runs, 0 errors, 2251s
+=== 07:08:38 chunk sw-07 saved
+=== 07:08:38 chunk ent-01
+=== 07:10:23 SWAP GUARD: 7371 MB swap -> restarting run
+120 runs (15 methods x 8 instances x 1 seeds); 4 distinct TBoxes classified
+=== 07:10:23 STOPPED by user (resume with: bash scripts/qwen14b_rest.sh start)
+=== 07:10:44 chunk ent-01
+120 runs (15 methods x 8 instances x 1 seeds); 4 distinct TBoxes classified
+done: 120 runs, 0 errors, 2472s
+=== 07:51:56 chunk ent-01 saved
+=== 07:51:56 chunk ent-02
+120 runs (15 methods x 8 instances x 1 seeds); 4 distinct TBoxes classified
+done: 120 runs, 0 errors, 2059s
+=== 08:26:16 chunk ent-02 saved
+=== 08:26:16 chunk ent-04
+=== 08:26:45 SWAP GUARD: 8250 MB swap -> restarting run
+120 runs (15 methods x 8 instances x 1 seeds); 8 distinct TBoxes classified
+=== 08:26:45 STOPPED by user (resume with: bash scripts/qwen14b_rest.sh start)
+=== 08:27:05 chunk ent-04
+120 runs (15 methods x 8 instances x 1 seeds); 8 distinct TBoxes classified
+done: 120 runs, 0 errors, 2148s
+=== 09:02:54 chunk ent-04 saved
+=== 09:02:54 chunk ent-05
+=== 09:31:07 SWAP GUARD: 7005 MB swap -> restarting run
+120 runs (15 methods x 8 instances x 1 seeds); 2 distinct TBoxes classified
+=== 09:31:07 STOPPED by user (resume with: bash scripts/qwen14b_rest.sh start)
+=== 09:31:27 chunk ent-05
+120 runs (15 methods x 8 instances x 1 seeds); 2 distinct TBoxes classified
+done: 120 runs, 0 errors, 778s
+=== 09:44:26 chunk ent-05 saved
+=== 09:44:26 chunk ent-06
+120 runs (15 methods x 8 instances x 1 seeds); 2 distinct TBoxes classified
+=== 10:00:16 STOPPED by user (resume with: bash scripts/qwen14b_rest.sh start)
+=== 10:35:31 chunk ent-06
+120 runs (15 methods x 8 instances x 1 seeds); 2 distinct TBoxes classified
+done: 120 runs, 0 errors, 1402s
+=== 10:58:54 chunk ent-06 saved
+=== 10:58:54 chunk ent-07
+=== 11:21:31 SWAP GUARD: 7882 MB swap -> restarting run
+120 runs (15 methods x 8 instances x 1 seeds); 6 distinct TBoxes classified
+=== 11:21:32 STOPPED by user (resume with: bash scripts/qwen14b_rest.sh start)
+=== 11:21:52 chunk ent-07
+120 runs (15 methods x 8 instances x 1 seeds); 6 distinct TBoxes classified
+done: 120 runs, 0 errors, 1098s
+=== 11:40:11 chunk ent-07 saved
+=== 11:40:11 ALL 18 CHUNKS DONE -> results/raw/real_qwen2.5-14b_rest.jsonl (    2160 runs)

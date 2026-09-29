@@ -1,0 +1,32 @@
+\begin{table}[H]
+\centering
+\caption{Paired statistical comparisons (SOST v1.0.1, SimLLM nominal). Effect = difference in proportion (ESAOG $-$ comparator) with 95\% cluster-bootstrap CI over instances; b/c = discordant instance$\times$seed pairs (ESAOG-only valid / comparator-only valid); $h$ = Cohen's $h$. Run-level $p$: exact McNemar over the 960 instance$\times$seed pairs, Holm-adjusted across the 15 binary comparisons; because the five seeds of an instance are not independent, these $p$-values are anti-conservative. Instance-level $p$: Wilcoxon signed-rank on per-instance mean outcomes (192 instances; 72 for SRR; 24 per SOST family), Holm-adjusted; this is the inferentially appropriate test. Continuous outcomes: Wilcoxon signed-rank on instance means, rank-biserial $r$. SOST-family comparators are the strongest baseline in that family.}
+\label{tab:statsresults}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llccccll}
+\toprule
+Comparison & Outcome & Effect (95\% CI) & b/c & Effect size & Run-level adj.\ $p$ & Instance-level adj.\ $p$ & Interpretation \\
+\midrule
+ESAOG vs B0 & VWS & +0.605 [+0.540,+0.672] & 595/14 & +1.47 & $<$0.001 & $<$0.001 & ESAOG higher\\
+ESAOG vs B1 & VWS & +0.636 [+0.593,+0.677] & 621/10 & +1.54 & $<$0.001 & $<$0.001 & ESAOG higher\\
+ESAOG vs B2 & VWS & +0.866 [+0.826,+0.901] & 835/4 & +2.12 & $<$0.001 & $<$0.001 & ESAOG higher\\
+ESAOG vs B3 & VWS & +0.714 [+0.660,+0.764] & 689/4 & +1.71 & $<$0.001 & $<$0.001 & ESAOG higher\\
+ESAOG vs B4 & VWS & +0.658 [+0.617,+0.698] & 636/4 & +1.58 & $<$0.001 & $<$0.001 & ESAOG higher\\
+ESAOG vs B5 & VWS & +0.952 [+0.930,+0.971] & 914/0 & +2.55 & $<$0.001 & $<$0.001 & ESAOG higher\\
+ESAOG vs B6 & VWS & +0.243 [+0.210,+0.273] & 241/8 & +0.73 & $<$0.001 & $<$0.001 & ESAOG higher\\
+ESAOG vs B7 & VWS & +0.617 [+0.572,+0.659] & 602/10 & +1.49 & $<$0.001 & $<$0.001 & ESAOG higher\\
+ESAOG vs B8 & VWS & +0.629 [+0.585,+0.671] & 618/14 & +1.52 & $<$0.001 & $<$0.001 & ESAOG higher\\
+ESAOG vs strongest (B6) & SRR & +0.236 [+0.183,+0.289] & 90/5 & +0.66 & $<$0.001 & $<$0.001 & ESAOG higher\\
+ESAOG vs B6 (SOST-H) & VWS-H & +0.400 [+0.333,+0.475] & 48/0 & +1.14 & $<$0.001 & $<$0.001 & ESAOG higher\\
+ESAOG vs B6 (SOST-I) & VWS-I & +0.325 [+0.242,+0.417] & 40/1 & +1.05 & $<$0.001 & $<$0.001 & ESAOG higher\\
+ESAOG vs B6 (SOST-P) & VWS-P & +0.192 [+0.108,+0.283] & 25/2 & +0.60 & $<$0.001 & 0.002 & ESAOG higher\\
+ESAOG vs B6 (SOST-F) & VWS-F & +0.200 [+0.142,+0.267] & 25/1 & +0.58 & $<$0.001 & $<$0.001 & ESAOG higher\\
+ESAOG vs B6 (SOST-R) & VWS-R & +0.133 [+0.050,+0.225] & 19/3 & +0.40 & $<$0.001 & 0.015 & ESAOG higher\\
+\midrule
+ESAOG vs B6 & latency & +0.153 [-0.278,+0.599] & -- & $r$=+0.02 & -- & 0.783 & no significant difference\\
+ESAOG vs B6 & cost & +0.012 [+0.009,+0.015] & -- & $r$=+0.51 & -- & $<$0.001 & ESAOG more expensive\\
+\bottomrule
+\end{tabular}}
+\end{table}

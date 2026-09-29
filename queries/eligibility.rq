@@ -1,0 +1,14 @@
+# A1 semantic eligibility. rdfs:subClassOf is the HermiT-materialised closure (reflexive),
+# so subsumption AND equivalence are covered without property paths.
+# Bindings: ?req (capability), ?sens (int), ?budget (decimal), ?pii (bool)
+PREFIX esaog: <https://w3id.org/esaog/core#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+SELECT DISTINCT ?a ?cap ?q ?cost ?lat WHERE {
+  ?a a esaog:Actor ; esaog:available true ; esaog:hasCapability ?cap ;
+     esaog:clearanceLevel ?cl ; esaog:costPerCall ?cost ; esaog:hostedExternally ?ext ;
+     esaog:declaredQuality ?q ; esaog:expectedLatency ?lat .
+  ?cap rdfs:subClassOf ?req .
+  FILTER(?cl >= ?sens)
+  FILTER(?cost <= ?budget)
+  FILTER(!(?pii && ?ext))
+}

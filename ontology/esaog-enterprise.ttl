@@ -1,0 +1,162 @@
+@prefix ent: <https://w3id.org/esaog/ent#> .
+@prefix esaog: <https://w3id.org/esaog/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://w3id.org/esaog/ent> a owl:Ontology ;
+    owl:imports <https://w3id.org/esaog/core> ;
+    owl:versionInfo "1.0.0" .
+
+ent:AMLReport a owl:Class ;
+    rdfs:label "AMLReport"@en ;
+    rdfs:subClassOf ent:ComplianceReport .
+
+ent:AMLScreening a owl:Class ;
+    rdfs:label "AML screening"@en ;
+    rdfs:subClassOf ent:ComplianceCheck ;
+    owl:equivalentClass ent:AntiMoneyLaunderingCheck ;
+    skos:definition "anti-money-laundering screening"@en .
+
+ent:ApprovalDecision a owl:Class ;
+    rdfs:label "ApprovalDecision"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+ent:ArchiveReceipt a owl:Class ;
+    rdfs:label "ArchiveReceipt"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+ent:ChatNotification a owl:Class ;
+    rdfs:label "chat notification"@en ;
+    rdfs:subClassOf ent:Notification ;
+    skos:definition "post chat message"@en .
+
+ent:ContractExtraction a owl:Class ;
+    rdfs:label "contract extraction"@en ;
+    rdfs:subClassOf ent:DocumentExtraction ;
+    skos:definition "extract contract clauses"@en .
+
+ent:EmailNotification a owl:Class ;
+    rdfs:label "email notification"@en ;
+    rdfs:subClassOf ent:Notification ;
+    skos:definition "send e-mail"@en .
+
+ent:FinanceApproval a owl:Class ;
+    rdfs:label "finance approval"@en ;
+    rdfs:subClassOf ent:Approval ;
+    skos:definition "finance controller sign-off"@en .
+
+ent:GDPRCheck a owl:Class ;
+    rdfs:label "GDPR check"@en ;
+    rdfs:subClassOf ent:ComplianceCheck ;
+    skos:definition "data-protection compliance"@en .
+
+ent:InvoiceRecord a owl:Class ;
+    rdfs:label "InvoiceRecord"@en ;
+    rdfs:subClassOf ent:ExtractedRecord .
+
+ent:ManagerApproval a owl:Class ;
+    rdfs:label "manager approval"@en ;
+    rdfs:subClassOf ent:Approval ;
+    skos:definition "line-manager sign-off"@en .
+
+ent:NotificationReceipt a owl:Class ;
+    rdfs:label "NotificationReceipt"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+ent:OCRInvoiceExtraction a owl:Class ;
+    rdfs:label "OCR invoice extraction"@en ;
+    rdfs:subClassOf ent:InvoiceExtraction ;
+    skos:definition "OCR-based invoice capture"@en .
+
+ent:PlainTextSummary a owl:Class ;
+    rdfs:label "PlainTextSummary"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+ent:RecordsArchiving a owl:Class ;
+    rdfs:label "records archiving"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "archive records"@en .
+
+ent:SanctionsScreening a owl:Class ;
+    rdfs:label "sanctions screening"@en ;
+    rdfs:subClassOf ent:ComplianceCheck ;
+    skos:definition "sanctions list screening"@en .
+
+ent:ScannedDocument a owl:Class ;
+    rdfs:label "ScannedDocument"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+ent:SchemaValidation a owl:Class ;
+    rdfs:label "schema validation"@en ;
+    rdfs:subClassOf ent:DataValidation ;
+    skos:definition "validate against schema"@en .
+
+ent:SocialMediaPosting a owl:Class ;
+    rdfs:label "social media posting"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "post on social media"@en .
+
+ent:SocialPost a owl:Class ;
+    rdfs:label "SocialPost"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+ent:ThreeWayMatch a owl:Class ;
+    rdfs:label "three-way match"@en ;
+    rdfs:subClassOf ent:DataValidation ;
+    skos:definition "PO/receipt/invoice matching"@en .
+
+ent:ValidatedRecord a owl:Class ;
+    rdfs:label "ValidatedRecord"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+ent:AntiMoneyLaunderingCheck a owl:Class ;
+    rdfs:label "anti-money-laundering check"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "AML rule evaluation"@en .
+
+ent:BillDataCapture a owl:Class ;
+    rdfs:label "bill data capture"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "capture billing data"@en .
+
+ent:ComplianceReport a owl:Class ;
+    rdfs:label "ComplianceReport"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+ent:ExtractedRecord a owl:Class ;
+    rdfs:label "ExtractedRecord"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+ent:InvoiceExtraction a owl:Class ;
+    rdfs:label "invoice extraction"@en ;
+    rdfs:subClassOf ent:DocumentExtraction ;
+    owl:equivalentClass ent:BillDataCapture ;
+    skos:definition "extract invoice fields"@en .
+
+ent:Approval a owl:Class ;
+    rdfs:label "approval"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "approve or reject"@en ;
+    esaog:mustBeRealizedBy esaog:HumanActor .
+
+ent:DataValidation a owl:Class ;
+    rdfs:label "data validation"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "validate extracted records"@en .
+
+ent:DocumentExtraction a owl:Class ;
+    rdfs:label "document extraction"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "extract fields from documents"@en .
+
+ent:Notification a owl:Class ;
+    rdfs:label "notification"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "notify stakeholders"@en .
+
+ent:ComplianceCheck a owl:Class ;
+    rdfs:label "compliance check"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "check regulatory compliance"@en .
+

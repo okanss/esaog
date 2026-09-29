@@ -1,0 +1,14 @@
+# Provenance completeness: an execution decision is complete when task, step, actor,
+# used input, time, justification and (on success) generated artifact are all present,
+# and recovery executions link to the execution they replace.
+PREFIX esaog: <https://w3id.org/esaog/core#>
+PREFIX prov:  <http://www.w3.org/ns/prov#>
+SELECT ?e ?complete WHERE {
+  ?e a esaog:Execution ; esaog:runLocal true .
+  BIND(EXISTS { ?e esaog:executesTask ?t } && EXISTS { ?e esaog:executesStep ?s }
+       && EXISTS { ?e prov:wasAssociatedWith ?a } && EXISTS { ?e prov:used ?u }
+       && EXISTS { ?e prov:startedAtTime ?ts } && EXISTS { ?e esaog:decisionJustification ?j }
+       && (EXISTS { ?e esaog:hasState esaog:Failed } || EXISTS { ?art prov:wasGeneratedBy ?e })
+       && (NOT EXISTS { ?e esaog:isRecovery true } || EXISTS { ?e esaog:replacesExecution ?old })
+       AS ?complete)
+}

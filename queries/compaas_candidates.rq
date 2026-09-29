@@ -1,0 +1,11 @@
+# B5 (COMPAAS-like): SPARQL composition over ASSERTED rdfs:subClassOf via property paths;
+# owl:equivalentClass is not interpreted, no policy filters.
+PREFIX esaog: <https://w3id.org/esaog/core#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+SELECT DISTINCT ?a ?q WHERE {
+  ?a a esaog:Actor ; esaog:available true ; esaog:hasCapability ?cap ; esaog:declaredQuality ?q ;
+     esaog:acceptsInput ?acc ; esaog:producesOutput ?out .
+  ?cap rdfs:subClassOf* ?req .
+  ?in rdfs:subClassOf* ?acc .
+  ?out rdfs:subClassOf* ?reqout .
+}

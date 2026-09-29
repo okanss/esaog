@@ -1,0 +1,200 @@
+@prefix esaog: <https://w3id.org/esaog/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sw: <https://w3id.org/esaog/sw#> .
+
+<https://w3id.org/esaog/sw> a owl:Ontology ;
+    owl:imports <https://w3id.org/esaog/core> ;
+    owl:versionInfo "1.0.0" .
+
+sw:ArchitectureDesign a owl:Class ;
+    rdfs:label "architecture design"@en ;
+    rdfs:subClassOf sw:SoftwarePlanning ;
+    skos:definition "design module structure"@en .
+
+sw:BranchManagement a owl:Class ;
+    rdfs:label "branch management"@en ;
+    rdfs:subClassOf sw:RepositoryOperation ;
+    skos:definition "manage branches"@en .
+
+sw:ChatTranscript a owl:Class ;
+    rdfs:label "ChatTranscript"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+sw:CodeSnippetSearch a owl:Class ;
+    rdfs:label "code snippet search"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "search snippets on the web"@en .
+
+sw:CodeSnippetText a owl:Class ;
+    rdfs:label "CodeSnippetText"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+sw:CoverageTestReport a owl:Class ;
+    rdfs:label "CoverageTestReport"@en ;
+    rdfs:subClassOf sw:TestReport .
+
+sw:DependencyVulnerabilityAudit a owl:Class ;
+    rdfs:label "dependency vulnerability audit"@en ;
+    rdfs:subClassOf sw:DependencyAnalysis ;
+    skos:definition "CVE audit of packages"@en .
+
+sw:DesignPlan a owl:Class ;
+    rdfs:label "DesignPlan"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+sw:IssueReport a owl:Class ;
+    rdfs:label "IssueReport"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+sw:JavaCodeGeneration a owl:Class ;
+    rdfs:label "Java code generation"@en ;
+    rdfs:subClassOf sw:CodeGeneration ;
+    skos:definition "write Java code"@en .
+
+sw:LicenseAudit a owl:Class ;
+    rdfs:label "license audit"@en ;
+    rdfs:subClassOf sw:DependencyAnalysis ;
+    skos:definition "licence compliance of packages"@en .
+
+sw:MarketingCopywriting a owl:Class ;
+    rdfs:label "marketing copywriting"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "write product marketing copy"@en .
+
+sw:MarketingText a owl:Class ;
+    rdfs:label "MarketingText"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+sw:MutationTesting a owl:Class ;
+    rdfs:label "mutation testing"@en ;
+    rdfs:subClassOf sw:SoftwareTesting ;
+    skos:definition "mutation-score analysis"@en .
+
+sw:PenetrationTesting a owl:Class ;
+    rdfs:label "penetration testing"@en ;
+    rdfs:subClassOf sw:SecurityReview ;
+    skos:definition "dynamic attack simulation"@en .
+
+sw:PropertyBasedTesting a owl:Class ;
+    rdfs:label "property-based testing"@en ;
+    rdfs:subClassOf sw:SoftwareTesting ;
+    skos:definition "generative property tests"@en .
+
+sw:PullRequest a owl:Class ;
+    rdfs:label "PullRequest"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+sw:PullRequestCreation a owl:Class ;
+    rdfs:label "pull request creation"@en ;
+    rdfs:subClassOf sw:RepositoryOperation ;
+    skos:definition "open a pull request"@en .
+
+sw:RequirementsAnalysis a owl:Class ;
+    rdfs:label "requirements analysis"@en ;
+    rdfs:subClassOf sw:SoftwarePlanning ;
+    skos:definition "analyse issue requirements"@en .
+
+sw:SASTReport a owl:Class ;
+    rdfs:label "SASTReport"@en ;
+    rdfs:subClassOf sw:SecurityReport .
+
+sw:SBOMDocument a owl:Class ;
+    rdfs:label "SBOMDocument"@en ;
+    rdfs:subClassOf sw:DependencyReport .
+
+sw:SBOMGeneration a owl:Class ;
+    rdfs:label "SBOM generation"@en ;
+    rdfs:subClassOf sw:DependencyAnalysis ;
+    skos:definition "software bill of materials"@en .
+
+sw:SecretScanning a owl:Class ;
+    rdfs:label "secret scanning"@en ;
+    rdfs:subClassOf sw:SecurityReview ;
+    skos:definition "detect leaked credentials"@en .
+
+sw:StaticSecurityAnalysis a owl:Class ;
+    rdfs:label "static security analysis"@en ;
+    rdfs:subClassOf sw:SecurityReview ;
+    owl:equivalentClass sw:SASTScan ;
+    skos:altLabel "SAST"@en ;
+    skos:definition "static vulnerability scanning"@en .
+
+sw:TypedPythonGeneration a owl:Class ;
+    rdfs:label "typed Python code generation"@en ;
+    rdfs:subClassOf sw:PythonCodeGeneration ;
+    skos:definition "mypy-clean Python"@en .
+
+sw:TypedSourcePatch a owl:Class ;
+    rdfs:label "TypedSourcePatch"@en ;
+    rdfs:subClassOf sw:SourcePatch .
+
+sw:UnitTesting a owl:Class ;
+    rdfs:label "unit testing"@en ;
+    rdfs:subClassOf sw:SoftwareTesting ;
+    owl:equivalentClass sw:ComponentTesting ;
+    skos:definition "unit-level tests"@en .
+
+sw:ComponentTesting a owl:Class ;
+    rdfs:label "component-level verification"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "isolated component checks"@en .
+
+sw:DependencyReport a owl:Class ;
+    rdfs:label "DependencyReport"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+sw:PythonCodeGeneration a owl:Class ;
+    rdfs:label "Python code generation"@en ;
+    rdfs:subClassOf sw:CodeGeneration ;
+    skos:definition "write Python code"@en .
+
+sw:SASTScan a owl:Class ;
+    rdfs:label "SAST scan"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "static application security testing"@en .
+
+sw:SecurityReport a owl:Class ;
+    rdfs:label "SecurityReport"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+sw:SourcePatch a owl:Class ;
+    rdfs:label "SourcePatch"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+sw:TestReport a owl:Class ;
+    rdfs:label "TestReport"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+sw:CodeGeneration a owl:Class ;
+    rdfs:label "code generation"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:altLabel "code synthesis"@en ;
+    skos:definition "write source code"@en .
+
+sw:RepositoryOperation a owl:Class ;
+    rdfs:label "repository operation"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "operate on the repository"@en .
+
+sw:SoftwarePlanning a owl:Class ;
+    rdfs:label "software planning"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "plan code changes"@en .
+
+sw:DependencyAnalysis a owl:Class ;
+    rdfs:label "dependency analysis"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "analyse third-party dependencies"@en .
+
+sw:SecurityReview a owl:Class ;
+    rdfs:label "security review"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "review code for vulnerabilities"@en .
+
+sw:SoftwareTesting a owl:Class ;
+    rdfs:label "software testing"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "test code changes"@en .
+

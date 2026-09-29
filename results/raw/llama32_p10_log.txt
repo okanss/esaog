@@ -1,0 +1,2 @@
+48 runs (1 methods x 48 instances x 1 seeds); 22 distinct TBoxes classified
+done: 48 runs, 0 errors, 119s

@@ -1,0 +1,46 @@
+2880 runs (15 methods x 192 instances x 1 seeds); 44 distinct TBoxes classified
+  500/2880  579s
+ERROR B4 sw-00-L 0 InternalServerError("Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011CfT2BxSMn2v7MC2pM1DFG'}")
+Traceback (most recent call last):
+  File "/Users/okis/Downloads/ESAOG/Claude Implementation/esaog/scripts/run_experiments.py", line 45, in _job
+    r = make(method, inst, seed, profile=profile).run()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/okis/Downloads/ESAOG/Claude Implementation/esaog/src/esaog/methods.py", line 197, in run
+    self.pre_execute(plan)
+  File "/Users/okis/Downloads/ESAOG/Claude Implementation/esaog/src/esaog/methods.py", line 407, in pre_execute
+    s["agent"] = self.assign(s, excluded=s.get("_ex", set()))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/okis/Downloads/ESAOG/Claude Implementation/esaog/src/esaog/methods.py", line 395, in assign
+    a, _ = self.llm.choose(step, list(self.actors.values()), ups, info=("meta", "history"), excluded=set(excluded),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/okis/Downloads/ESAOG/Claude Implementation/esaog/src/esaog/llm_backend.py", line 237, in choose
+    r = self._ask(SYSTEM_ASSIGN, user, 400)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/okis/Downloads/ESAOG/Claude Implementation/esaog/src/esaog/llm_backend.py", line 96, in _ask
+    c = self.prov.complete(system, user, max_tokens)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/okis/Downloads/ESAOG/Claude Implementation/esaog/src/esaog/providers.py", line 97, in complete
+    text, tin, tout, stop = self._call(system, user, max_tokens)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/okis/Downloads/ESAOG/Claude Implementation/esaog/src/esaog/providers.py", line 125, in _call
+    r = self.client.messages.create(**kw)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/okis/Downloads/ESAOG/Claude Implementation/.venv/lib/python3.12/site-packages/anthropic/_utils/_utils.py", line 294, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/okis/Downloads/ESAOG/Claude Implementation/.venv/lib/python3.12/site-packages/anthropic/resources/messages/messages.py", line 997, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/okis/Downloads/ESAOG/Claude Implementation/.venv/lib/python3.12/site-packages/anthropic/_base_client.py", line 1543, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/okis/Downloads/ESAOG/Claude Implementation/.venv/lib/python3.12/site-packages/anthropic/_base_client.py", line 1208, in request
+    raise self._make_status_error_from_response(response) from None
+anthropic.InternalServerError: Error code: 500 - {'type': 'error', 'error': {'type': 'api_error', 'message': 'Internal server error'}, 'request_id': 'req_011CfT2BxSMn2v7MC2pM1DFG'}
+
+  1000/2880  1006s
+  1500/2880  1482s
+  2000/2880  1910s
+  2500/2880  2278s
+done: 2880 runs, 1 errors, 2549s
+=== 04:13:16 claude runs finished

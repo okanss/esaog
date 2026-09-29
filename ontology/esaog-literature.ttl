@@ -1,0 +1,227 @@
+@prefix esaog: <https://w3id.org/esaog/core#> .
+@prefix lit: <https://w3id.org/esaog/lit#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://w3id.org/esaog/lit> a owl:Ontology ;
+    owl:imports <https://w3id.org/esaog/core> ;
+    owl:versionInfo "1.0.0" .
+
+lit:AMSTAR2Appraisal a owl:Class ;
+    rdfs:label "AMSTAR 2 appraisal"@en ;
+    rdfs:subClassOf lit:ReviewQualityAppraisal ;
+    skos:definition "AMSTAR 2 checklist"@en .
+
+lit:CitationIndexSearch a owl:Class ;
+    rdfs:label "citation index search"@en ;
+    rdfs:subClassOf lit:LiteratureSearch ;
+    skos:definition "forward/backward citation chasing"@en .
+
+lit:CitationVerification a owl:Class ;
+    rdfs:label "citation verification"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:altLabel "reference checking"@en ;
+    skos:definition "verify citations"@en .
+
+lit:EligibilityScreening a owl:Class ;
+    rdfs:label "eligibility screening"@en ;
+    rdfs:subClassOf lit:Screening ;
+    owl:equivalentClass lit:CriteriaBasedScreening ;
+    skos:definition "apply eligibility criteria"@en .
+
+lit:EmbaseSearch a owl:Class ;
+    rdfs:label "Embase search"@en ;
+    rdfs:subClassOf lit:BiomedicalSearch ;
+    skos:definition "Emtree-indexed Embase retrieval"@en .
+
+lit:FinancialForecastReport a owl:Class ;
+    rdfs:label "FinancialForecastReport"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+lit:FinancialForecasting a owl:Class ;
+    rdfs:label "financial forecasting"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "forecast financial indicators"@en .
+
+lit:FullTextScreening a owl:Class ;
+    rdfs:label "full-text screening"@en ;
+    rdfs:subClassOf lit:Screening ;
+    skos:definition "second-pass screening"@en .
+
+lit:KeywordList a owl:Class ;
+    rdfs:label "KeywordList"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+lit:MetaAnalysis a owl:Class ;
+    rdfs:label "meta-analysis"@en ;
+    rdfs:subClassOf lit:EvidenceSynthesis ;
+    owl:equivalentClass lit:QuantitativeEvidencePooling ;
+    skos:definition "quantitative pooling"@en .
+
+lit:MetaAnalysisReport a owl:Class ;
+    rdfs:label "MetaAnalysisReport"@en ;
+    rdfs:subClassOf lit:SynthesisReport .
+
+lit:NarrativeSynthesis a owl:Class ;
+    rdfs:label "narrative synthesis"@en ;
+    rdfs:subClassOf lit:EvidenceSynthesis ;
+    skos:definition "qualitative narrative summary"@en .
+
+lit:NarrativeSynthesisReport a owl:Class ;
+    rdfs:label "NarrativeSynthesisReport"@en ;
+    rdfs:subClassOf lit:SynthesisReport .
+
+lit:OutcomeDataExtraction a owl:Class ;
+    rdfs:label "outcome data extraction"@en ;
+    rdfs:subClassOf lit:EvidenceExtraction ;
+    skos:definition "effect-size extraction"@en .
+
+lit:PICOExtraction a owl:Class ;
+    rdfs:label "PICO extraction"@en ;
+    rdfs:subClassOf lit:EvidenceExtraction ;
+    skos:definition "population/intervention/comparator/outcome extraction"@en .
+
+lit:PICOTable a owl:Class ;
+    rdfs:label "PICOTable"@en ;
+    rdfs:subClassOf lit:ExtractionTable .
+
+lit:PeerReviewedRecordSet a owl:Class ;
+    rdfs:label "PeerReviewedRecordSet"@en ;
+    rdfs:subClassOf lit:BibliographicRecordSet .
+
+lit:PreprintRecordSet a owl:Class ;
+    rdfs:label "PreprintRecordSet"@en ;
+    rdfs:subClassOf lit:BibliographicRecordSet .
+
+lit:PreprintSearch a owl:Class ;
+    rdfs:label "preprint search"@en ;
+    rdfs:subClassOf lit:LiteratureSearch ;
+    skos:definition "retrieve preprint server records"@en .
+
+lit:PubMedSearch a owl:Class ;
+    rdfs:label "PubMed search"@en ;
+    rdfs:subClassOf lit:BiomedicalSearch ;
+    skos:altLabel "MEDLINE retrieval"@en ;
+    skos:definition "MeSH-indexed MEDLINE retrieval"@en .
+
+lit:ROBINSIAssessment a owl:Class ;
+    rdfs:label "ROBINS-I assessment"@en ;
+    rdfs:subClassOf lit:RiskOfBiasAssessment ;
+    skos:definition "non-randomised study bias"@en .
+
+lit:ResearchQuestion a owl:Class ;
+    rdfs:label "ResearchQuestion"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+lit:ReviewQualityReport a owl:Class ;
+    rdfs:label "ReviewQualityReport"@en ;
+    rdfs:subClassOf lit:AppraisalReport .
+
+lit:RiskOfBiasReport a owl:Class ;
+    rdfs:label "RiskOfBiasReport"@en ;
+    rdfs:subClassOf lit:AppraisalReport .
+
+lit:RoB2Assessment a owl:Class ;
+    rdfs:label "RoB 2 assessment"@en ;
+    rdfs:subClassOf lit:RiskOfBiasAssessment ;
+    owl:equivalentClass lit:CochraneRiskOfBias2 ;
+    skos:definition "randomised-trial risk of bias"@en .
+
+lit:ScreenedRecordSet a owl:Class ;
+    rdfs:label "ScreenedRecordSet"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+lit:TitleAbstractScreening a owl:Class ;
+    rdfs:label "title and abstract screening"@en ;
+    rdfs:subClassOf lit:Screening ;
+    skos:definition "first-pass screening"@en .
+
+lit:VerifiedReport a owl:Class ;
+    rdfs:label "VerifiedReport"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+lit:WebPageSet a owl:Class ;
+    rdfs:label "WebPageSet"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+lit:WebSearch a owl:Class ;
+    rdfs:label "web search"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:altLabel "internet search"@en ;
+    skos:definition "general web page search"@en .
+
+lit:CochraneRiskOfBias2 a owl:Class ;
+    rdfs:label "Cochrane risk-of-bias tool v2"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "Cochrane RCT bias domains"@en .
+
+lit:CriteriaBasedScreening a owl:Class ;
+    rdfs:label "criteria-based record triage"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "rule-driven inclusion triage"@en .
+
+lit:ExtractionTable a owl:Class ;
+    rdfs:label "ExtractionTable"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+lit:QuantitativeEvidencePooling a owl:Class ;
+    rdfs:label "quantitative evidence pooling"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "statistical pooling of effects"@en .
+
+lit:ReviewQualityAppraisal a owl:Class ;
+    rdfs:label "review quality appraisal"@en ;
+    rdfs:subClassOf lit:QualityAppraisal ;
+    skos:definition "appraise systematic reviews"@en .
+
+lit:AppraisalReport a owl:Class ;
+    rdfs:label "AppraisalReport"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+lit:BibliographicRecordSet a owl:Class ;
+    rdfs:label "BibliographicRecordSet"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+lit:BiomedicalSearch a owl:Class ;
+    rdfs:label "biomedical literature search"@en ;
+    rdfs:subClassOf lit:LiteratureSearch ;
+    skos:definition "retrieve biomedical studies"@en .
+
+lit:EvidenceExtraction a owl:Class ;
+    rdfs:label "evidence extraction"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:altLabel "data extraction"@en ;
+    skos:definition "extract study data"@en .
+
+lit:EvidenceSynthesis a owl:Class ;
+    rdfs:label "evidence synthesis"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "synthesise findings"@en .
+
+lit:QualityAppraisal a owl:Class ;
+    rdfs:label "quality appraisal"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:altLabel "critical appraisal"@en ;
+    skos:definition "appraise study quality"@en .
+
+lit:RiskOfBiasAssessment a owl:Class ;
+    rdfs:label "risk of bias assessment"@en ;
+    rdfs:subClassOf lit:QualityAppraisal ;
+    skos:definition "assess risk of bias"@en .
+
+lit:SynthesisReport a owl:Class ;
+    rdfs:label "SynthesisReport"@en ;
+    rdfs:subClassOf esaog:DataType .
+
+lit:LiteratureSearch a owl:Class ;
+    rdfs:label "literature search"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:altLabel "bibliographic search"@en ;
+    skos:definition "retrieve scholarly records"@en .
+
+lit:Screening a owl:Class ;
+    rdfs:label "study screening"@en ;
+    rdfs:subClassOf esaog:Capability ;
+    skos:definition "include or exclude records"@en .
+

@@ -1,0 +1,30 @@
+\begin{table}[H]
+\centering
+\caption{Real-LLM rerun with gpt-6-luna (192 SOST instances, default sampling (the model accepts no temperature parameter), reasoning effort low, one run per instance). H--R: VWS on SOST-H/I/P/F/R; SRR on F/R/C. Tokens = mean LLM tokens per run (real calls plus modelled overhead). Last column: SimLLM (nominal, seed 0) VWS on the same instances. $^\dagger$No LLM involved (identical to the SimLLM run). ESAOG vs strongest baseline (B1): VWS difference +0.203 [+0.125, +0.281], b/c = 53/14, Holm-adjusted exact McNemar $p$ $<$0.001.}
+\label{tab:real_gpt-6-luna}
+\scriptsize
+\begin{tabular}{lccccccc}
+\toprule
+Method & VWS & H--R & SRR & SAA & CVR$\downarrow$ & Tokens & SimLLM VWS\\
+\midrule
+B0 Static$^\dagger$ & 0.35 & 0.16 & 0.21 & 0.69 & 0.10 & 0 & 0.35\\
+B1 LLM-only & 0.70 & 0.70 & 0.68 & 0.91 & 0.09 & 13549 & 0.33\\
+B2 TF-IDF lexical & 0.08 & 0.04 & 0.07 & 0.61 & 0.37 & 789 & 0.09\\
+B3 Graph router & 0.23 & 0.21 & 0.31 & 0.75 & 0.25 & 789 & 0.27\\
+B4 Tressoir-like & 0.55 & 0.54 & 0.58 & 0.84 & 0.16 & 26896 & 0.33\\
+B5 COMPAAS-like$^\dagger$ & 0.01 & 0.02 & 0.03 & 0.58 & 0.16 & 0 & 0.01\\
+B6 O-MCP-like & 0.62 & 0.64 & 0.60 & 0.88 & 0.00 & 15450 & 0.75\\
+B7 CogniGraph-like & 0.06 & 0.07 & 0.10 & 0.73 & 0.26 & 6121 & 0.40\\
+B8 COVENANT-like & 0.60 & 0.58 & 0.54 & 0.91 & 0.08 & 27844 & 0.35\\
+ESAOG v1.0 (LLM dataflow edges) & 0.81 & 0.81 & 0.81 & 0.81 & 0.00 & 14602 & --\\
+\textbf{ESAOG} (v1.1) & 0.90 & 0.90 & 0.89 & 0.90 & 0.00 & 14602 & 0.97\\
+M1 $-$OWL & 0.45 & 0.38 & 0.36 & 0.50 & 0.00 & 14602 & 0.45\\
+M2 $-$SHACL & 0.70 & 0.65 & 0.81 & 0.82 & 0.08 & 14602 & 0.67\\
+M3 $-$Provenance ranking & 0.88 & 0.86 & 0.82 & 0.90 & 0.00 & 14602 & 0.93\\
+M4 $-$Runtime KG & 0.69 & 0.73 & 0.33 & 0.86 & 0.00 & 14602 & 0.77\\
+M5 Flat capabilities & 0.54 & 0.41 & 0.42 & 0.90 & 0.10 & 14602 & 0.32\\
+M6 $-$LLM planner$^\dagger$ & 0.75 & 0.75 & 0.75 & 0.75 & 0.00 & 0 & 0.75\\
+M7 $-$Recomposition & 0.68 & 0.72 & 0.31 & 0.86 & 0.00 & 14602 & 0.72\\
+\bottomrule
+\end{tabular}
+\end{table}

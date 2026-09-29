@@ -1,0 +1,44 @@
+@prefix esaog:  <https://w3id.org/esaog/core#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix prov:   <http://www.w3.org/ns/prov#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix agento: <http://www.w3id.org/agentic-ai/onto#> .
+
+# Alignment module (kept out of the reasoning closure used in experiments).
+#
+# REUSE STATUS (verified September 2026):
+#  * PROV-O is reused directly inside esaog-core.ttl (no redundant terms):
+#    esaog:Actor rdfs:subClassOf prov:Agent, esaog:Execution rdfs:subClassOf
+#    prov:Activity, esaog:Artifact rdfs:subClassOf prov:Entity.
+#  * AgentO (Ekelhart et al., ESWC 2026): namespace and class names verified
+#    against the released ontology file
+#    https://github.com/agentic-patterns/agentic-ai-onto/blob/main/ontology.ttl
+#    (MIT licence), whose declared ontology IRI is
+#    <http://www.w3id.org/agentic-ai/onto>; the documentation redirect is
+#    https://w3id.org/agentic-ai/onto. Only SKOS mapping links are asserted
+#    (no owl:equivalentClass), so the alignment cannot change any entailment
+#    used by the orchestrator. AgentO has no class for a concrete workflow
+#    instance; esaog:Workflow is therefore only related to agento:WorkflowPattern.
+#  * PROV-AGENT (Souza et al., IEEE eScience 2025): the model is published as a
+#    conceptual extension of W3C PROV (implemented in ORNL Flowcept,
+#    https://github.com/ORNL/flowcept) without an RDF namespace, so no RDF links
+#    can be asserted. The correspondence is documented here instead; because both
+#    PROV-AGENT and ESAOG specialise PROV-O, ESAOG provenance records remain
+#    interpretable at the PROV-O level:
+#        esaog:Agent       ~ PROV-AGENT AIAgent           (both prov:Agent)
+#        esaog:Invocation  ~ PROV-AGENT AgentTool          (both prov:Activity)
+#        (no ESAOG term)   ~ PROV-AGENT AIModelInvocation  (LLM calls are logged
+#                                                           as run metadata, not in G_E)
+#        esaog:Artifact    ~ PROV-AGENT ResponseData / DomainData (both prov:Entity)
+#  * ESAOG-specific terms (Capability-as-class punning, clearance levels,
+#    mustBeRealizedBy obligations, runtime Failure subclasses) have no
+#    counterpart in either vocabulary; they are minted in the esaog: namespace.
+
+esaog:Agent         skos:closeMatch   agento:Agent .
+esaog:Tool          skos:closeMatch   agento:Tool .
+esaog:Task          skos:closeMatch   agento:Task .
+esaog:Goal          skos:closeMatch   agento:Goal .
+esaog:Capability    skos:closeMatch   agento:Capability .
+esaog:Step          skos:closeMatch   agento:WorkflowStep .
+esaog:Workflow      skos:relatedMatch agento:WorkflowPattern .

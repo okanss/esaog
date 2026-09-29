@@ -1,0 +1,32 @@
+\begin{table}[H]
+\centering
+\caption{Failure/recovery confusion matrix (counts over 960 runs per method). A run ``observes a failure'' when any tool invocation failed (injected unavailability, transient error, type mismatch, missing input, or output-governance rejection). Cond.\ SRR = recovered-and-valid / runs with an observed failure.}
+\label{tab:confusion}
+\scriptsize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrcrr}
+\toprule
+& \multicolumn{5}{c}{Runtime failure observed} & \multicolumn{2}{c}{No failure observed}\\
+\cmidrule(lr){2-6}\cmidrule(lr){7-8}
+Method & Runs & Recovered, valid & Succeeded, policy-invalid & Unrecovered & Cond.\ SRR & Valid & Invalid\\
+\midrule
+B0 & 589 & 90 & 19 & 480 & 0.15 & 253 & 118\\
+B1 & 602 & 183 & 126 & 293 & 0.30 & 130 & 228\\
+B2 & 587 & 27 & 35 & 525 & 0.05 & 66 & 307\\
+B3 & 558 & 115 & 160 & 283 & 0.21 & 124 & 278\\
+B4 & 616 & 160 & 179 & 277 & 0.26 & 132 & 212\\
+B5 & 289 & 10 & 276 & 3 & 0.03 & 0 & 671\\
+B6 & 457 & 341 & 0 & 116 & 0.75 & 350 & 153\\
+B7 & 524 & 173 & 285 & 66 & 0.33 & 159 & 277\\
+B8 & 544 & 110 & 8 & 426 & 0.20 & 210 & 206\\
+\textbf{ESAOG} & 388 & 375 & 0 & 13 & 0.97 & 549 & 23\\
+M1 $-$OWL & 219 & 144 & 0 & 75 & 0.66 & 307 & 434\\
+M2 $-$SHACL & 518 & 264 & 34 & 220 & 0.51 & 349 & 93\\
+M3 $-$Provenance ranking & 423 & 379 & 0 & 44 & 0.90 & 514 & 23\\
+M4 $-$Runtime KG & 388 & 185 & 0 & 203 & 0.48 & 549 & 23\\
+M5 Flat capabilities & 392 & 118 & 0 & 274 & 0.30 & 197 & 371\\
+M6 $-$LLM planner & 301 & 300 & 0 & 1 & 1.00 & 419 & 240\\
+M7 $-$Recomposition & 388 & 148 & 0 & 240 & 0.38 & 549 & 23\\
+\bottomrule
+\end{tabular}}
+\end{table}

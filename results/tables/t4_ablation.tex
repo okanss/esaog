@@ -1,0 +1,41 @@
+\begin{table}[H]
+\centering
+\caption{Ablation results (960 runs per variant). SRR and Recovery Regret (RR, oracle-utility units, lower is better) over F/R/C variants.}
+\label{tab:ablationresults}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Variant & VWS & SAA & CVR$\downarrow$ & SRR & Recovery regret$\downarrow$ & Latency$\downarrow$\\
+\midrule
+M0 Full & 0.96 & 0.98 & 0.00 & 0.94 & 0.063 & 27.8\\
+M1 $-$OWL & 0.47 & 0.53 & 0.00 & 0.38 & 0.535 & 21.2\\
+M2 $-$SHACL & 0.64 & 0.85 & 0.08 & 0.69 & 0.242 & 24.5\\
+M3 $-$Provenance ranking & 0.93 & 0.98 & 0.00 & 0.86 & 0.194 & 27.2\\
+M4 $-$Runtime KG & 0.76 & 0.94 & 0.00 & 0.41 & 0.427 & 26.4\\
+M5 Flat capabilities & 0.33 & 0.83 & 0.16 & 0.24 & 0.543 & 27.7\\
+M6 $-$LLM planner & 0.75 & 0.75 & 0.00 & 0.75 & 0.207 & 10.5\\
+M7 $-$Recomposition & 0.73 & 0.93 & 0.00 & 0.31 & 0.505 & 25.9\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Ablation VWS by SOST family: which mechanism carries which perturbation.}
+\label{tab:ablationsost}
+\scriptsize
+\begin{tabular}{lcccccccc}
+\toprule
+Variant & N & L & H & I & P & F & R & C\\
+\midrule
+M0 Full & 0.97 & 0.97 & 0.98 & 0.99 & 0.96 & 0.94 & 0.93 & 0.95\\
+M1 $-$OWL & 0.90 & 0.91 & 0.00 & 0.47 & 0.33 & 0.53 & 0.61 & 0.00\\
+M2 $-$SHACL & 0.74 & 0.76 & 0.74 & 0.07 & 0.72 & 0.72 & 0.70 & 0.65\\
+M3 $-$Provenance ranking & 0.97 & 0.97 & 0.98 & 0.99 & 0.95 & 0.94 & 0.68 & 0.95\\
+M4 $-$Runtime KG & 0.97 & 0.97 & 0.98 & 0.99 & 0.96 & 0.15 & 0.93 & 0.16\\
+M5 Flat capabilities & 0.48 & 0.62 & 0.00 & 0.20 & 0.59 & 0.26 & 0.09 & 0.38\\
+M6 $-$LLM planner & 0.75 & 0.75 & 0.75 & 0.75 & 0.75 & 0.75 & 0.75 & 0.74\\
+M7 $-$Recomposition & 0.97 & 0.97 & 0.98 & 0.99 & 0.96 & 0.00 & 0.93 & 0.00\\
+\bottomrule
+\end{tabular}
+\end{table}

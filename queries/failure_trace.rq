@@ -1,0 +1,9 @@
+# Failure-to-recomposition trace for one task URI (used for the trace figure).
+PREFIX esaog: <https://w3id.org/esaog/core#>
+PREFIX prov:  <http://www.w3.org/ns/prov#>
+SELECT ?e ?a ?st ?f ?old ?wv ?j WHERE {
+  ?e esaog:executesTask ?task ; prov:wasAssociatedWith ?a ; esaog:hasState ?st ; esaog:inWorkflowVersion ?wv ;
+     esaog:decisionJustification ?j .
+  OPTIONAL { ?e esaog:failedWith ?fo . ?fo a ?f . }
+  OPTIONAL { ?e esaog:replacesExecution ?old }
+} ORDER BY ?e

@@ -1,0 +1,72 @@
+{
+ "run_name": "real_gpt-6-luna_all_v11",
+ "started": "2026-09-27T03:11:01",
+ "duration_s": 454.0,
+ "code_tree_sha256_16": "389a7fc05f053390",
+ "ontology_version": "1.0.0",
+ "benchmark": {
+  "name": "SOST",
+  "version": "1.0.0",
+  "master_seed": 20260926,
+  "variants": [
+   "N",
+   "L",
+   "H",
+   "I",
+   "P",
+   "F",
+   "R",
+   "C"
+  ],
+  "domains": [
+   "literature",
+   "software",
+   "enterprise"
+  ],
+  "base_per_domain": 8,
+  "defect_rate": 0.12,
+  "n_instances": 192
+ },
+ "benchmark_sha256_16": "d5bfce38db58e6ce",
+ "methods": [
+  "P",
+  "M1",
+  "M2",
+  "M3",
+  "M4",
+  "M5",
+  "M7"
+ ],
+ "seeds": [
+  0
+ ],
+ "n_runs": 1344,
+ "errors": 0,
+ "llm": {
+  "backend": "real model openai:gpt-6-luna",
+  "profile": "llm:openai:gpt-6-luna",
+  "temperature_analogue": "Gumbel noise",
+  "prompts": "prompts/*.txt",
+  "pricing_usd_per_token": {
+   "input": 3e-06,
+   "output": 1.5e-05
+  }
+ },
+ "cache_policy": "HermiT TBox classification cached by TBox content hash (cold time reported separately); LLM completions cached by exact prompt (identical prompts from different methods receive the identical temperature-0 completion); no caching of SPARQL results, SHACL reports or tool results",
+ "python": "3.12.2",
+ "platform": "macOS-27.0-arm64-arm-64bit",
+ "processor": "arm",
+ "packages": {
+  "rdflib": "7.6.0",
+  "pyshacl": "0.40.1",
+  "owlready2": "0.51",
+  "langgraph": "1.2.12",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "pandas": "3.0.6",
+  "statsmodels": "0.15.0",
+  "matplotlib": "3.11.2",
+  "java": "java version \"26.0.1\" 2026-04-21"
+ },
+ "workers": 4
+}
