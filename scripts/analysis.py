@@ -597,29 +597,39 @@ def t10_manifest():
     raw = [RAW / f for f in FINAL_RAW if (RAW / f).exists()]
     ana = [ROOT / "scripts" / f for f in ("analysis.py", "analysis_real.py", "sensitivity.py", "coverage.py", "fill_paper.py")]
     AA = r"[AUTHOR ACTION REQUIRED: %s]"
-    rows = [("Benchmark", f"SOST v1.0.1 (task-description correction of v1.0.0; the file's metadata field was not updated and still reads ``{m['benchmark']['version']}''), {m['benchmark']['n_instances']} instances"),
-            ("Benchmark SHA-256", bsha),
-            ("Superseded benchmark v1.0.0 SHA-256", hashlib.sha256((RAW / "superseded_sost_benchmark_v1.json").read_bytes()).hexdigest()),
-            ("Ontology + SHACL shapes SHA-256", sha_files(onto) + f" (ontology version {m['ontology_version']}; {len(onto)} TTL files)"),
-            ("Final raw results SHA-256", sha_files(raw) + f" ({len(raw)} files in results/raw)"),
-            ("Analysis scripts SHA-256", sha_files(ana)),
+    shacl = sorted((ROOT / "shapes").glob("*.ttl"))
+    ontf = sorted((ROOT / "ontology").glob("*.ttl"))
+    runners = [ROOT / "run_all.sh"] + sorted((ROOT / "scripts").glob("run_*.sh")) + [ROOT / "scripts" / "run_experiments.py", ROOT / "scripts" / "qwen14b_rest.sh"]
+    asrun = RAW / "sost_benchmark_v1.0.1_as_run.json"
+    rows = [("ESAOG architecture version (final)", "ESAOG v1.1 (post-observation engineering revision; dataflow grounding)"),
+            ("Original evaluated architecture", "ESAOG v1.0 (pre-specified; reported alongside v1.1 for every real model)"),
+            ("Software/repository release", AA % "tag a release"),
+            ("Git commit", AA % "insert commit hash"),
+            ("Repository / archive", AA % "insert persistent repository URL and archive DOI"),
+            ("SOST final version", f"v1.0.1, {m['benchmark']['n_instances']} instances (\\texttt{{benchmark/sost\\_benchmark.json}})"),
+            ("SOST final SHA-256", bsha),
+            ("SOST as-run file SHA-256", hashlib.sha256(asrun.read_bytes()).hexdigest() + " (identical content; metadata version label read 1.0.0 when the runs were made; this is the hash recorded in the run manifests)"),
+            ("SOST superseded version / SHA-256", "v1.0.0 (before the post-protocol wording correction; kept only for Table~\\ref{tab:benchver}): " + hashlib.sha256((RAW / "sost_benchmark_v1.0.0_superseded.json").read_bytes()).hexdigest()),
+            ("Ontology version / SHA-256", f"{m['ontology_version']} / " + sha_files(ontf) + f" ({len(ontf)} TTL files)"),
+            ("SHACL shapes SHA-256", sha_files(shacl) + f" ({len(shacl)} TTL files)"),
+            ("Raw results SHA-256", sha_files(raw) + f" ({len(raw)} files in results/raw)"),
+            ("Analysis scripts SHA-256", sha_files(ana) + " (analysis.py, analysis\\_real.py, sensitivity.py, coverage.py, fill\\_paper.py)"),
+            ("Experiment runner scripts SHA-256", sha_files(runners) + f" ({len(runners)} files; run parameters are the command lines in these scripts)"),
             ("Code tree hash, main run (SHA-256/16)", m["code_tree_sha256_16"] + " (computed at run completion; per-run hashes in results/raw/manifest\\_*.json)"),
-            ("Code commit / release", AA % "tag a release and insert commit hash"),
-            ("Repository / archive DOI", AA % "insert persistent repository URL and archive DOI"),
             ("Master seed / run seeds", f"{m['benchmark']['master_seed']} / {','.join(map(str, m['seeds']))} (SimLLM); one run per instance for real LLMs"),
             ("Main runs", f"{m['n_runs']} ({len(m['methods'])} configurations), {m['errors']} errors"),
             ("SimLLM", f"profile {m['llm']['profile']} (weak/strong for sensitivity); prompts {m['llm']['prompts']}; pricing assumption USD 3/M input, 15/M output tokens"),
-            ("Real LLM 1", "OpenAI gpt-6-luna, Chat Completions, JSON mode, seed 0, reasoning\\_effort=low, default sampling (temperature not accepted); run 2026-09-27; USD 0.10/0.50 per M tokens"),
-            ("Real LLM 2", "Anthropic claude-haiku-4-5, Messages API, temperature 0, max 4{,}000 output tokens, no extended thinking; run 2026-09-27; USD 1/5 per M tokens"),
+            ("Hosted LLM 1", "OpenAI gpt-6-luna, Chat Completions, JSON mode, seed 0, reasoning\\_effort=low, default sampling (temperature not accepted); run 2026-09-27; USD 0.10/0.50 per M tokens"),
+            ("Hosted LLM 2", "Anthropic claude-haiku-4-5, Messages API, temperature 0, max 4{,}000 output tokens, no extended thinking; run 2026-09-27; USD 1/5 per M tokens"),
             ("Local LLMs (Ollama)", "Llama-3.2-3B-Instruct, Qwen3-4B-Instruct-2507, Llama-3.1-8B-Instruct (Q4\\_K\\_M GGUF, Hugging Face), qwen2.5:14b (Q4\\_K\\_M); temperature 0, seed 0, JSON format; context 8{,}192 (4{,}096 for 8B/14B); runs 2026-09-27 to 2026-09-29"),
             ("Reasoner", f"HermiT via owlready2 {p['owlready2']} ({p['java']})"),
             ("RDF / SPARQL / SHACL", f"rdflib {p['rdflib']}, pySHACL {p['pyshacl']}"),
-            ("Agent runtime adapter", f"LangGraph {p['langgraph']} StateGraph + MCP-style JSON-RPC tool server (not a conformance-tested MCP implementation)"),
+            ("Runtime adapters", f"LangGraph {p['langgraph']} StateGraph adapter and a direct sequential adapter (both in this release); MCP-style JSON-RPC tool server (not a conformance-tested MCP implementation)"),
             ("Statistics", f"numpy {p['numpy']}, scipy {p['scipy']}, pandas {p['pandas']}"),
             ("Python / platform", f"{m['python']} / {m['platform']}"),
             ("Cache policy", m["cache_policy"].replace("no caching of LLM calls", "no caching of SimLLM calls") + "; real-LLM completions cached by exact prompt (identical prompts issued by different methods receive the identical completion)"),
             ("One-command runner", r"\texttt{bash run\_all.sh}")]
-    esc = lambda b: b if (b.startswith("\\texttt") or "\\_" in b or "AUTHOR ACTION" in b) else str(b).replace("_", chr(92) + "_")
+    esc = lambda b: b if (b.startswith("\\texttt") or "\\_" in b or "AUTHOR ACTION" in b or "\\ref" in b) else str(b).replace("_", chr(92) + "_")
     body = "\n".join(f"{a} & {esc(b)}" + r"\\" for a, b in rows)
     write("t10_manifest", r"""\begin{table}[H]
 \centering

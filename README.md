@@ -41,6 +41,19 @@ Example:
   ../.venv/bin/python scripts/run_experiments.py --profile llm:ollama:qwen2.5:14b \
       --methods P,B1 --seeds 0 --workers 1 --out real_example
 
+## Benchmark versions
+| File | Version | SHA-256 | Role |
+|---|---|---|---|
+| `benchmark/sost_benchmark.json` | SOST v1.0.1 | `b8c7e4be6832142d16343cc3b115506533000af7aecde26d15f4a0b8c6ba8e80` | final benchmark (all reported results) |
+| `results/raw/sost_benchmark_v1.0.1_as_run.json` | SOST v1.0.1 content, metadata label `1.0.0` | `d5bfce38db58e6ce06f8a49b9ee550d4ca82b45b0d588f14c2e897ad3a87cc24` | byte-identical to the final file except the version label; this is the hash recorded in the run manifests |
+| `results/raw/sost_benchmark_v1.0.0_superseded.json` | SOST v1.0.0 | `812c038b97d9499afddc503903bd376e7073a019527afc22d1c2ddf4ad52676e` | superseded (before the post-protocol task-description correction); used only for the benchmark-version sensitivity table |
+
+`python -m esaog.benchmark` regenerates the final file deterministically (verified byte-identical).
+
+## Versions
+Architecture: ESAOG v1.1 (final; post-observation dataflow-grounding revision of the pre-specified v1.0, both reported).
+Software release: see the Git tag of this repository (the manuscript cites the exact tag and commit).
+
 ## Licence and citation
 Code (`src/`, `scripts/`, `tests/`, `run_all.sh`): MIT, see `LICENSE`.
 Benchmark, ontology, shapes, queries, prompts and results: CC BY 4.0, see `LICENSE-DATA.md`.

@@ -437,7 +437,7 @@ def generate(path=BENCH):
     for inst in instances:  # sanity: every slot has at least one valid alternative
         for s, v in inst["valid_alternatives"].items():
             assert v, (inst["instance_id"], s)
-    meta = dict(name="SOST", version="1.0.0", master_seed=MASTER_SEED, variants=VARIANTS,
+    meta = dict(name="SOST", version="1.0.1", master_seed=MASTER_SEED, variants=VARIANTS,
                 domains=list(DOMAINS), base_per_domain=BASE_PER_DOMAIN, defect_rate=DEFECT_RATE,
                 n_instances=len(instances))
     path.parent.mkdir(parents=True, exist_ok=True)
