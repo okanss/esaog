@@ -3,6 +3,7 @@
 Reads ../ESAOG_research_manuscript_v5_ORIGINAL_pre_results.tex (pristine pre-results version) and
 writes ../ESAOG_research_manuscript_v5.tex. Tables are inlined from results/tables/*.tex.
 """
+import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -228,6 +229,27 @@ def add_float_refs(s):
     return s
 
 
+AUTHOR_META = PAPER_DIR / "author_metadata.json"
+
+
+def fill_author_metadata(s):
+    """Author-confirmed declarations, kept next to the manuscript (outside the code repository)."""
+    if not AUTHOR_META.exists():
+        return s
+    meta = json.loads(AUTHOR_META.read_text())
+    if meta.get("funding"):
+        s = s.replace("[AUTHOR ACTION REQUIRED: confirm funding statement]", meta["funding"])
+    if meta.get("conflict_of_interest"):
+        s = s.replace("[AUTHOR ACTION REQUIRED: confirm conflict-of-interest statement]", meta["conflict_of_interest"])
+    if meta.get("ai_responsibility_confirmed"):
+        s = s.replace(" [AUTHOR ACTION REQUIRED: confirm the preceding responsibility statement and adapt this disclosure to the target journal's current generative-AI policy]", "")
+    if meta.get("evidence_matrix_statement"):
+        s = s.replace("[AUTHOR ACTION REQUIRED: decide whether the literature-review evidence matrix will be included in the repository/supplement]", meta["evidence_matrix_statement"])
+    if meta.get("archive_doi"):
+        s = s.replace("[AUTHOR ACTION REQUIRED: insert archive DOI or journal-compatible repository URL]", "\\url{https://doi.org/%s}" % meta["archive_doi"])
+    return s
+
+
 def main():
     s = SRC.read_text()
     for a, b in REF_FIXES:
@@ -287,6 +309,7 @@ def main():
     s = s.replace(r"\date{Revision 5: September 2026}", r"\date{Revision 6: September 2026}")
     s = add_float_refs(s)
     s = fill_release(s)
+    s = fill_author_metadata(s)
     DST.write_text(s)
     print("written", DST)
 
