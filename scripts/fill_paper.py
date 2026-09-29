@@ -214,6 +214,20 @@ def fill_release(s):
     return s
 
 
+FLOAT_REFS = {'tab:coding': 'Table~\\ref{tab:coding} lists the dimensions used to code each reviewed work.', 'fig:taxonomy': 'Figure~\\ref{fig:taxonomy} summarises these graph roles as a progression from passive to operational use.', 'fig:timeline': 'Figure~\\ref{fig:timeline} condenses this evolution.', 'tab:semtech': 'Table~\\ref{tab:semtech} lists the semantic technologies used and the authority each has in \\esaog{}.', 'fig:designspace': 'Figure~\\ref{fig:designspace} positions \\esaog{} in this design space.', 'tab:ontology': 'Table~\\ref{tab:ontology} lists the core ontology modules and representative terms.', 'fig:architecture': 'Figure~\\ref{fig:architecture} shows the resulting lifecycle.', 'fig:continuity': 'Figure~\\ref{fig:continuity} illustrates this continuity across lifecycle stages.', 'tab:hypotheses': 'Table~\\ref{tab:hypotheses} maps each hypothesis to its primary evidence and falsification signal.', 'fig:experiment': 'Figure~\\ref{fig:experiment} summarises the experimental design.', 'fig:perturbation': 'Figure~\\ref{fig:perturbation} plots the same results by perturbation family.', 'fig:ablation': 'Figure~\\ref{fig:ablation} shows the ablation effects with their confidence intervals.', 'tab:real_llama32-3b': 'Tables~\\ref{tab:real_llama32-3b}, \\ref{tab:real_llama31-8b}, \\ref{tab:real_qwen3-4b} and \\ref{tab:real_qwen25-14b} give the full results for the four local models.', 'fig:hierarchy': 'Figure~\\ref{fig:hierarchy} shows an example of the capability hierarchy from the literature-review domain, and Figure~\\ref{fig:trace} a failure-to-recomposition trace generated from $G_E$.'}
+
+
+def add_float_refs(s):
+    """Insert one citing sentence before each float that the text does not otherwise reference."""
+    for lab, sent in FLOAT_REFS.items():
+        if ("\\ref{" + lab + "}") in s.replace(sent, ""):
+            continue
+        i = s.index("\\label{" + lab + "}")
+        j = max(s.rfind("\\begin{table}", 0, i), s.rfind("\\begin{figure}", 0, i))
+        s = s[:j] + sent + "\n\n" + s[j:]
+    return s
+
+
 def main():
     s = SRC.read_text()
     for a, b in REF_FIXES:
@@ -271,6 +285,7 @@ def main():
     i = s.index(r"\section*{Declarations}"); j = s.index(r"\begin{thebibliography}")
     s = s[:i] + DECLARATIONS_FINAL + "\n" + s[j:]
     s = s.replace(r"\date{Revision 5: September 2026}", r"\date{Revision 6: September 2026}")
+    s = add_float_refs(s)
     s = fill_release(s)
     DST.write_text(s)
     print("written", DST)
