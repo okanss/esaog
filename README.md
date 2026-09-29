@@ -22,6 +22,7 @@ mechanism-equivalent re-implementations, not the published systems.
 | `scripts/` | `run_experiments.py`, `coverage.py`, `sensitivity.py`, `trace_example.py`, `analysis.py`, `fill_paper.py` |
 | `results/raw/` | per-run `runs.jsonl`/`runs.csv`, sensitivity runs, coverage, manifests |
 | `results/tables/`, `results/figures/` | generated LaTeX tables and PDF figures |
+| `docs/` | literature-review evidence matrix (`literature_evidence_matrix.csv`) supporting the prior-work coding and novelty audit, with its provenance note |
 | `tests/` | unit tests (entailment, A1 vs oracle, SHACL, registration, adapter equivalence, URI continuity) |
 
 ## Reproduce

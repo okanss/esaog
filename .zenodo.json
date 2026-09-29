@@ -1,0 +1,24 @@
+{
+  "title": "ESAOG: reference implementation, SOST benchmark and experimental results",
+  "upload_type": "software",
+  "description": "Reference implementation of the Executable Semantic Agent Orchestration Graph (ESAOG; architecture v1.1), the SOST v1.0.1 benchmark (192 instances; SHA-256 b8c7e4be6832142d16343cc3b115506533000af7aecde26d15f4a0b8c6ba8e80), ontology modules and SHACL shapes, raw results of all reported experiments, analysis scripts that regenerate every table and figure of the accompanying manuscript, and the literature-review evidence matrix. Code: MIT; data: CC BY 4.0.",
+  "creators": [
+    {
+      "name": "Bursa, Okan",
+      "affiliation": "Department of Computer Engineering, İzmir Bakırçay University, İzmir, Türkiye"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "agent orchestration",
+    "knowledge graph",
+    "ontology",
+    "OWL",
+    "SHACL",
+    "SPARQL",
+    "provenance",
+    "LLM multi-agent systems",
+    "benchmark"
+  ],
+  "language": "eng"
+}

@@ -603,9 +603,11 @@ def t10_manifest():
     asrun = RAW / "sost_benchmark_v1.0.1_as_run.json"
     rows = [("ESAOG architecture version (final)", "ESAOG v1.1 (post-observation engineering revision; dataflow grounding)"),
             ("Original evaluated architecture", "ESAOG v1.0 (pre-specified; reported alongside v1.1 for every real model)"),
+            ("Post-observation engineering revision", "ESAOG v1.1: dataflow edges derived from typed task signatures in $G_K$, introduced after the first real-model run"),
             ("Software/repository release", AA % "tag a release"),
             ("Git commit", AA % "insert commit hash"),
-            ("Repository / archive", AA % "insert persistent repository URL and archive DOI"),
+            ("Repository URL", AA % "insert repository URL"),
+            ("Zenodo DOI", AA % "insert Zenodo DOI after creating final release"),
             ("SOST final version", f"v1.0.1, {m['benchmark']['n_instances']} instances (\\texttt{{benchmark/sost\\_benchmark.json}})"),
             ("SOST final SHA-256", bsha),
             ("SOST as-run file SHA-256", hashlib.sha256(asrun.read_bytes()).hexdigest() + " (identical content; metadata version label read 1.0.0 when the runs were made; this is the hash recorded in the run manifests)"),
@@ -614,6 +616,7 @@ def t10_manifest():
             ("SHACL shapes SHA-256", sha_files(shacl) + f" ({len(shacl)} TTL files)"),
             ("Raw results SHA-256", sha_files(raw) + f" ({len(raw)} files in results/raw)"),
             ("Analysis scripts SHA-256", sha_files(ana) + " (analysis.py, analysis\\_real.py, sensitivity.py, coverage.py, fill\\_paper.py)"),
+            ("Literature evidence matrix SHA-256", sha_files([ROOT / "docs" / "literature_evidence_matrix.csv"]) + " (docs/literature\\_evidence\\_matrix.csv)"),
             ("Experiment runner scripts SHA-256", sha_files(runners) + f" ({len(runners)} files; run parameters are the command lines in these scripts)"),
             ("Code tree hash, main run (SHA-256/16)", m["code_tree_sha256_16"] + " (computed at run completion; per-run hashes in results/raw/manifest\\_*.json)"),
             ("Master seed / run seeds", f"{m['benchmark']['master_seed']} / {','.join(map(str, m['seeds']))} (SimLLM); one run per instance for real LLMs"),
@@ -629,7 +632,7 @@ def t10_manifest():
             ("Python / platform", f"{m['python']} / {m['platform']}"),
             ("Cache policy", m["cache_policy"].replace("no caching of LLM calls", "no caching of SimLLM calls") + "; real-LLM completions cached by exact prompt (identical prompts issued by different methods receive the identical completion)"),
             ("One-command runner", r"\texttt{bash run\_all.sh}")]
-    esc = lambda b: b if (b.startswith("\\texttt") or "\\_" in b or "AUTHOR ACTION" in b or "\\ref" in b) else str(b).replace("_", chr(92) + "_")
+    esc = lambda b: b if (b.startswith("\\texttt") or "\\_" in b or "AUTHOR ACTION" in b or "\\ref" in b or "$" in b) else str(b).replace("_", chr(92) + "_")
     body = "\n".join(f"{a} & {esc(b)}" + r"\\" for a, b in rows)
     write("t10_manifest", r"""\begin{table}[H]
 \centering
