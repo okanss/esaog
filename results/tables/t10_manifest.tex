@@ -1,6 +1,6 @@
 \begin{table}[H]
 \centering
-\caption{Reproducibility manifest. Hashes are computed from the released files at table-generation time; per-run manifests are in \texttt{results/raw/manifest\_*.json}.}
+\caption{Reproducibility manifest. Hashes are computed from the released files at table-generation time. Single-file values are plain SHA-256 digests (reproducible with \texttt{sha256sum}); multi-file values are SHA-256 over the concatenated file name and contents of each file in the listed (sorted) order, as implemented in \texttt{sha\_files} in \texttt{scripts/analysis.py}; per-run manifests are in \texttt{results/raw/manifest\_*.json}.}
 \label{tab:manifest}
 \scriptsize
 \begin{tabularx}{\textwidth}{p{3.6cm}X}
@@ -21,8 +21,8 @@ SOST superseded version / SHA-256 & v1.0.0 (before the post-protocol wording cor
 Ontology version / SHA-256 & 1.0.0 / edb5526dee74061be0cd1032d56e1dac877f8b96d2bcd115317f656b06afe6d7 (5 TTL files)\\
 SHACL shapes SHA-256 & 7a8d9c2754d3ea9e54bcacfc5087cf12dc0bc495ebe99e48869cb7d132512b62 (2 TTL files)\\
 Raw results SHA-256 & e09c57aba79766792ac88961dfc31b8e67d6e669e25dfbe18c40e761106c845d (17 files in results/raw)\\
-Analysis scripts SHA-256 & f72661bdde0aeaedceb80a8f65aac15c16cb72642c55b05581d1da447adff271 (analysis.py, analysis\_real.py, sensitivity.py, coverage.py, fill\_paper.py)\\
-Literature evidence matrix SHA-256 & 0db1ee0797781530d78f3e87981e69e3024b257714a3fd4713cab82c173262d5 (docs/literature\_evidence\_matrix.csv)\\
+Analysis scripts SHA-256 & 3c742eeaa55f792c91f79a04235326332d329cd8923585d5864c5306d7808500 (analysis.py, analysis\_real.py, sensitivity.py, coverage.py, fill\_paper.py)\\
+Literature evidence matrix SHA-256 & 0a95b0e7900fcfaef81d4e2093f03c35dbd11a82182d5b3682f9d70dae8e06d0 (docs/literature\_evidence\_matrix.csv)\\
 Experiment runner scripts SHA-256 & 29e5241eca634a7692df885daf98d8eab96f89c8412255a8f5744b94f62dd10e (12 files; run parameters are the command lines in these scripts)\\
 Code tree hash, main run (SHA-256/16) & d46f4674c2331da7 (computed at run completion; per-run hashes in results/raw/manifest\_*.json)\\
 Master seed / run seeds & 20260926 / 0,1,2,3,4 (SimLLM); one run per instance for real LLMs\\

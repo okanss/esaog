@@ -616,7 +616,7 @@ def t10_manifest():
             ("SHACL shapes SHA-256", sha_files(shacl) + f" ({len(shacl)} TTL files)"),
             ("Raw results SHA-256", sha_files(raw) + f" ({len(raw)} files in results/raw)"),
             ("Analysis scripts SHA-256", sha_files(ana) + " (analysis.py, analysis\\_real.py, sensitivity.py, coverage.py, fill\\_paper.py)"),
-            ("Literature evidence matrix SHA-256", sha_files([ROOT / "docs" / "literature_evidence_matrix.csv"]) + " (docs/literature\\_evidence\\_matrix.csv)"),
+            ("Literature evidence matrix SHA-256", hashlib.sha256((ROOT / "docs" / "literature_evidence_matrix.csv").read_bytes()).hexdigest() + " (docs/literature\\_evidence\\_matrix.csv)"),
             ("Experiment runner scripts SHA-256", sha_files(runners) + f" ({len(runners)} files; run parameters are the command lines in these scripts)"),
             ("Code tree hash, main run (SHA-256/16)", m["code_tree_sha256_16"] + " (computed at run completion; per-run hashes in results/raw/manifest\\_*.json)"),
             ("Master seed / run seeds", f"{m['benchmark']['master_seed']} / {','.join(map(str, m['seeds']))} (SimLLM); one run per instance for real LLMs"),
@@ -636,7 +636,7 @@ def t10_manifest():
     body = "\n".join(f"{a} & {esc(b)}" + r"\\" for a, b in rows)
     write("t10_manifest", r"""\begin{table}[H]
 \centering
-\caption{Reproducibility manifest. Hashes are computed from the released files at table-generation time; per-run manifests are in \texttt{results/raw/manifest\_*.json}.}
+\caption{Reproducibility manifest. Hashes are computed from the released files at table-generation time. Single-file values are plain SHA-256 digests (reproducible with \texttt{sha256sum}); multi-file values are SHA-256 over the concatenated file name and contents of each file in the listed (sorted) order, as implemented in \texttt{sha\_files} in \texttt{scripts/analysis.py}; per-run manifests are in \texttt{results/raw/manifest\_*.json}.}
 \label{tab:manifest}
 \scriptsize
 \begin{tabularx}{\textwidth}{p{3.6cm}X}
